@@ -13,33 +13,65 @@ knitr::opts_chunk$set(echo = TRUE)
 library(polite)
 library(rvest)
 library(dplyr)
-urllink <- "https://www.amazon.com/s?i=specialty-aps&bbn=16225015011&rh=n%3A%2116225015011%2Cn%3A165993011&ref=nav_em__nav_desktop_sa_intl_action_figures_statues_0_2_25_2"
-session <- bow(urllink,user_agent = "FOR EDUCATIONAL PURPOSES")
-session
+
+urllink <- "https://www.amazon.co.uk/s?k=music+tools&ref=nb_sb_noss"
+session <- bow(urllink, user_agent = "For Educational Purposes")
+
+firstdf <- data.frame() 
+scrapetool <- function(selector){
+  scrape(session)%>%
+    html_nodes(selector)%>%
+    html_text(trim =  TRUE)
+}
+
+productname <- scrapetool("span.a-size-base-plus.a-color-base.a-text-normal") 
+productname <- productname[1:40]
+
+productprice <- scrapetool("span.a-price") 
+productprice <- productprice[1:40]
+
+productrate <- scrapetool("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+productrate <- productrate[1:40]
+
+productrev <- scrapetool("span.a-size-base.s-underline-text")
+productrev <- productrev[1:40]
+ 
+item <- rbind(firstdf,data.frame(
+            Name = productname,
+            Price = productprice,
+            Ratings = productrate,
+            Reviews = productrev
+))
+
 ```
 
+
 ```{r}
+urllink2 <- "https://www.amazon.co.uk/s?k=music+tools&page=2&qid=1707398845&ref=sr_pg_2"
 
-productname <- scrape(session)%>%
-  html_nodes("h2.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-4")%>%
-  html_text()
-productname
+seconddf <- data.frame() 
+scrapetool2 <- function(selector){
+  scrape(session)%>%
+    html_nodes(selector)%>%
+    html_text(trim =  TRUE)
+}
 
-productprice <- scrape(session)%>%
-  html_nodes("span.a-price-whole")%>%
-  html_text()
-productprice
+productname2 <- scrapetool2("span.a-size-base-plus.a-color-base.a-text-normal") 
+productname2 <- productname2[1:30]
 
-productrate <- scrape(session)%>%
-  html_nodes("span.a-size-base.s-underline-text")%>%
-html_text()
-productrate
+productprice2 <- scrapetool2("span.a-price") 
+productprice2 <- productprice2[1:30]
 
-toydataframe <- data.frame(
-  NAME = productname,
-  PRICE = productprice
-  Rate = productrate
-  
-)
-toydataframe
+productrate2 <- scrapetool2("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+productrate2 <- productrate2[1:30]
+
+productrev2 <- scrapetool2("span.a-size-base.s-underline-text")
+productrev2 <- productrev2[1:30]
+ 
+item2 <- rbind(seconddf,data.frame(
+            Name = productname2,
+            Price = productprice2,
+            Ratings = productrate2,
+            Reviews = productrev2
+))
 ```
