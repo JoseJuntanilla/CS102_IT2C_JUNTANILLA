@@ -10,68 +10,335 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-library(polite)
-library(rvest)
 library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+library(xml2)
 
-urllink <- "https://www.amazon.co.uk/s?k=music+tools&ref=nb_sb_noss"
-session <- bow(urllink, user_agent = "For Educational Purposes")
 
-firstdf <- data.frame() 
-scrapetool <- function(selector){
-  scrape(session)%>%
-    html_nodes(selector)%>%
-    html_text(trim =  TRUE)
+```
+
+FIRST PRODUCT MUSICAL INSTRUMENTS
+```{r}
+urllink <- "https://www.amazon.co.uk/s?k=instruments&rh=n%3A340837031&dc&ds=v1%3AnxfUJ3UllgrQDXHZjXo1VWBc0ID9B6QuK4S6bHxayXI&qid=1708177654&rnid=1642204031&ref=sr_nr_n_1"
+
+itemdf <- data.frame()
+
+session <- bow(urllink,user_agent = "For Educational Purposes")
+
+    productscrape <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
 }
+   
+itemname <- productscrape("span.a-text-normal")
+itemname <- itemname[2:14]
 
-productname <- scrapetool("span.a-size-base-plus.a-color-base.a-text-normal") 
-productname <- productname[1:40]
+itemprice <- productscrape("span.a-price")
+itemprice <- itemprice[2:14]
 
-productprice <- scrapetool("span.a-price") 
-productprice <- productprice[1:40]
+itemrate <- productscrape("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+itemrate <- itemrate[2:14]
 
-productrate <- scrapetool("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
-productrate <- productrate[1:40]
+itemreview <- productscrape("span.a-size-base.s-underline-text")
+itemreview <- itemreview[2:14]
 
-productrev <- scrapetool("span.a-size-base.s-underline-text")
-productrev <- productrev[1:40]
- 
-item <- rbind(firstdf,data.frame(
-            Name = productname,
-            Price = productprice,
-            Ratings = productrate,
-            Reviews = productrev
-))
+firstitem <- rbind(itemdf, data.frame(
+                      Name = itemname,
+                      Price = itemprice,
+                      Ratings = itemrate,
+                      TotalReview = itemreview))
+
+
+
+```
+
+```{r}
+urllink2<-"https://www.amazon.co.uk/s?k=instruments&i=mi&rh=n%3A340837031&dc&page=2&qid=1708177676&rnid=1642204031&ref=sr_pg_2"
+
+itemdf2 <- data.frame()
+
+session2 <- bow(urllink2,user_agent = "For Educational Purposes")
+
+
+
+
+ productscrape2 <- function(selector){
+    scrape(session2) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+itemname2 <- productscrape2("span.a-text-normal")
+itemname2 <- itemname2[2:14]
+
+itemprice2 <- productscrape2("span.a-price")
+itemprice2 <- itemprice2[2:14]
+
+itemrate2 <- productscrape2("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+itemrate2 <- itemrate2[2:14]
+
+itemreview2 <- productscrape2("span.a-size-base.s-underline-text")
+itemreview2 <- itemreview2[2:14]
+
+firstitem2 <- rbind(itemdf2, data.frame(
+                      Name = itemname2,
+                      Price = itemprice2,
+                      Ratings = itemrate2,
+                      TotalReview = itemreview2))
+
+
+
 
 ```
 
 
 ```{r}
-urllink2 <- "https://www.amazon.co.uk/s?k=music+tools&page=2&qid=1707398845&ref=sr_pg_2"
+urllink3 <- "https://www.amazon.co.uk/s?k=instruments&i=mi&rh=n%3A340837031&dc&page=3&qid=1708177997&rnid=1642204031&ref=sr_pg_3"
 
-seconddf <- data.frame() 
-scrapetool2 <- function(selector){
-  scrape(session)%>%
-    html_nodes(selector)%>%
-    html_text(trim =  TRUE)
+itemdf3 <- data.frame()
+
+session3 <- bow(urllink3,user_agent = "For Educational Purposes")
+
+
+
+
+ productscrape3 <- function(selector){
+    scrape(session3) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
 }
+   
+   
+itemname3 <- productscrape3("span.a-text-normal")
+itemname3 <- itemname3[2:11]
 
-productname2 <- scrapetool2("span.a-size-base-plus.a-color-base.a-text-normal") 
-productname2 <- productname2[1:30]
+itemprice3 <- productscrape3("span.a-price")
+itemprice3 <- itemprice3[2:11]
 
-productprice2 <- scrapetool2("span.a-price") 
-productprice2 <- productprice2[1:30]
+itemrate3 <- productscrape3("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+itemrate3 <- itemrate3[2:11]
 
-productrate2 <- scrapetool2("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
-productrate2 <- productrate2[1:30]
+itemreview3 <- productscrape3("span.a-size-base.s-underline-text")
+itemreview3 <- itemreview3[2:11]
 
-productrev2 <- scrapetool2("span.a-size-base.s-underline-text")
-productrev2 <- productrev2[1:30]
- 
-item2 <- rbind(seconddf,data.frame(
-            Name = productname2,
-            Price = productprice2,
-            Ratings = productrate2,
-            Reviews = productrev2
-))
+firstitem3 <- rbind(itemdf3, data.frame(
+                      Name = itemname3,
+                      Price = itemprice3,
+                      Ratings = itemrate3,
+                      TotalReview = itemreview3))
+
+
+
 ```
+
+```{r}
+urllink4 <- "https://www.amazon.co.uk/s?k=instruments&i=mi&rh=n%3A340837031&dc&page=4&qid=1708178154&rnid=1642204031&ref=sr_pg_4"
+
+itemdf4 <- data.frame()
+
+session4 <- bow(urllink4,user_agent = "For Educational Purposes")
+
+
+
+
+ productscrape4 <- function(selector){
+    scrape(session4) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+itemname4 <- productscrape4("span.a-text-normal")
+itemname4 <- itemname4[2:11]
+
+itemprice4 <- productscrape4("span.a-price")
+itemprice4 <- itemprice4[2:11]
+
+itemrate4 <- productscrape4("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+itemrate4 <- itemrate4[2:11]
+
+itemreview4 <- productscrape4("span.a-size-base.s-underline-text")
+itemreview4 <- itemreview4[2:11]
+
+firstitem4 <- rbind(itemdf4, data.frame(
+                      Name = itemname4,
+                      Price = itemprice4,
+                      Ratings = itemrate4,
+                      TotalReview = itemreview4))
+
+
+```
+
+```{r}
+urllink5 <- "https://www.amazon.co.uk/s?k=instruments&i=mi&rh=n%3A340837031&dc&page=5&qid=1708179027&rnid=1642204031&ref=sr_pg_5"
+
+itemdf5 <- data.frame()
+
+session5 <- bow(urllink5,user_agent = "For Educational Purposes")
+
+
+
+
+ productscrape5 <- function(selector){
+    scrape(session5) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+itemname5 <- productscrape5("span.a-text-normal")
+itemname5 <- itemname5[2:15]
+
+itemprice5 <- productscrape5("span.a-price")
+itemprice5 <- itemprice5[2:15]
+
+itemrate5 <- productscrape5("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+itemrate5 <- itemrate5[2:15]
+
+itemreview5 <- productscrape5("span.a-size-base.s-underline-text")
+itemreview5 <- itemreview5[2:15]
+
+firstitem5 <- rbind(itemdf5, data.frame(
+                      Name = itemname5,
+                      Price = itemprice5,
+                      Ratings = itemrate5,
+                      TotalReview = itemreview5))
+
+
+```
+
+```{r}
+urllink6 <- "https://www.amazon.co.uk/s?k=instruments&i=mi&rh=n%3A340837031&dc&page=6&qid=1708179031&rnid=1642204031&ref=sr_pg_6"
+
+itemdf6 <- data.frame()
+
+session6 <- bow(urllink6,user_agent = "For Educational Purposes")
+
+
+
+
+ productscrape6 <- function(selector){
+    scrape(session6) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+itemname6 <- productscrape6("span.a-text-normal")
+itemname6 <- itemname6[2:21]
+
+itemprice6 <- productscrape6("span.a-price")
+itemprice6 <- itemprice6[2:21]
+
+itemrate6 <- productscrape6("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+itemrate6 <- itemrate6[2:21]
+
+itemreview6 <- productscrape6("span.a-size-base.s-underline-text")
+itemreview6 <- itemreview6[2:21]
+
+firstitem6 <- rbind(itemdf6, data.frame(
+                      Name = itemname6,
+                      Price = itemprice6,
+                      Ratings = itemrate6,
+                      TotalReview = itemreview6))
+
+
+```
+
+```{r}
+urllink7 <- "https://www.amazon.co.uk/s?k=instruments&i=mi&rh=n%3A340837031&dc&page=7&qid=1708179293&rnid=1642204031&ref=sr_pg_7"
+
+itemdf7 <- data.frame()
+
+session7 <- bow(urllink7,user_agent = "For Educational Purposes")
+
+
+
+
+ productscrape7 <- function(selector){
+    scrape(session7) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+itemname7 <- productscrape7("span.a-text-normal")
+itemname7 <- itemname7[2:21]
+
+itemprice7 <- productscrape7("span.a-price")
+itemprice7 <- itemprice7[2:21]
+
+itemrate7 <- productscrape7("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+itemrate7 <- itemrate7[2:21]
+
+itemreview7 <- productscrape7("span.a-size-base.s-underline-text")
+itemreview7 <- itemreview7[2:21]
+
+firstitem7 <- rbind(itemdf7, data.frame(
+                      Name = itemname7,
+                      Price = itemprice7,
+                      Ratings = itemrate7,
+                      TotalReview = itemreview7))
+
+
+```
+
+```{r}
+first_product_combine <- rbind(firstitem,firstitem2,firstitem3,firstitem4,firstitem5,firstitem6,firstitem7)
+
+```
+
+
+SECOND PRODUCT TOYS
+```{r}
+
+linkurl <- "https://www.amazon.co.uk/s?bbn=364272031&rh=n%3A364272031%2Cp_n_age_range%3A4220475031&dc&qid=1708180905&rnid=391457011&ref=lp_364272031_nr_p_n_age_range_5"
+  
+proddf <- data.frame()
+
+resp <- bow(linkurl,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapeprod <- function(selector){
+    scrape(resp) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+productname <- scrapeprod("span.a-text-normal")
+productname <- productname[2:10]
+
+productprice <- scrapeprod("span.a-price")
+productprice <- productprice[2:10]
+
+productrate <- scrapeprod("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+productrate <- productrate[2:10]
+
+productrev <- scrapeprod("span.a-size-base.s-underline-text")
+productrev <- productrev[2:10]
+
+seconditem <- rbind(proddf, data.frame(Name = productname,
+                      Price = productprice,
+                      Ratings = productrate,
+                      TotalReview = productrev))
+
+
+```
+
+
