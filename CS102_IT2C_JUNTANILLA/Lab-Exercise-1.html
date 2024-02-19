@@ -1076,6 +1076,438 @@ seconditem10 &lt;- rbind(proddf10, data.frame(
                       Ratings = productrate10,
                       TotalReview = productrev10))</code></pre>
 <pre class="r"><code>second_product_combine &lt;- rbind(seconditem,seconditem2,seconditem3,seconditem4,seconditem5,seconditem6,seconditem7,seconditem8,seconditem9,seconditem10)</code></pre>
+<p>Movies With Reviews</p>
+<pre class="r"><code>movieurl &lt;- &quot;https://www.imdb.com/title/tt23849204/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf = data.frame()
+
+
+moviesession &lt;- bow(movieurl,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov &lt;- function(selector){
+    scrape(moviesession) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname &lt;- scrapemov(&quot;a.subnav_heading&quot;)
+  movname &lt;- rep(movname, 25)
+  movname &lt;- movname[1:25]
+  
+  nameofreviewer &lt;- scrapemov(&quot;span.display-name-link&quot;)
+  nameofreviewer &lt;- nameofreviewer[1:25]
+  
+  movierev &lt;- scrapemov(&quot;div.text.show-more__control&quot;)
+  movierev &lt;- movierev[1:25]
+  
+  moviedate &lt;- scrapemov(&quot;span.review-date&quot;)
+  moviedate &lt;- moviedate[1:25]
+  
+  movierate &lt;- scrapemov(&quot;span.rating-other-user-rating&quot;)
+  movierate &lt;- movierate[1:25]
+
+  
+  movie1 &lt;- rbind(moviedf, data.frame(
+                          Category = moviecat,
+                          Name = movname,
+                          Reviewers_Name = nameofreviewer,
+                          Reviews = movierev,
+                          Review_Date = moviedate,
+                          Rating = movierate))</code></pre>
+<pre class="r"><code>movieurl2 &lt;- &quot;https://www.imdb.com/title/tt0259534/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf2 = data.frame()
+
+
+moviesession2 &lt;- bow(movieurl2,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov2 &lt;- function(selector){
+    scrape(moviesession2) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat2 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname2 &lt;- scrapemov2(&quot;a.subnav_heading&quot;)
+  movname2 &lt;- rep(movname2, 25)
+  movname2 &lt;- movname2[1:25]
+  
+  nameofreviewer2 &lt;- scrapemov2(&quot;span.display-name-link&quot;)
+  nameofreviewer2 &lt;- nameofreviewer2[1:25]
+  
+  movierev2 &lt;- scrapemov2(&quot;div.text.show-more__control&quot;)
+  movierev2 &lt;- movierev2[1:25]
+  
+  moviedate2 &lt;- scrapemov2(&quot;span.review-date&quot;)
+  moviedate2 &lt;- moviedate2[1:25]
+  
+  movierate2 &lt;- scrapemov2(&quot;span.rating-other-user-rating&quot;)
+  movierate2 &lt;- movierate2[1:25]
+
+  
+  movie2 &lt;- rbind(moviedf2, data.frame(
+                          Category = moviecat2,
+                          Name = movname2,
+                          Reviewers_Name = nameofreviewer2,
+                          Reviews = movierev2,
+                          Review_Date = moviedate2,
+                          Rating = movierate2))</code></pre>
+<pre class="r"><code>movieurl3 &lt;- &quot;https://www.imdb.com/title/tt0093603/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf3 = data.frame()
+
+
+moviesession3 &lt;- bow(movieurl3,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov3 &lt;- function(selector){
+    scrape(moviesession3) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat3 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname3 &lt;- scrapemov3(&quot;a.subnav_heading&quot;)
+  movname3 &lt;- rep(movname3, 25)
+  movname3 &lt;- movname3[1:25]
+  
+  nameofreviewer3 &lt;- scrapemov3(&quot;span.display-name-link&quot;)
+  nameofreviewer3 &lt;- nameofreviewer3[1:25]
+  
+  movierev3 &lt;- scrapemov3(&quot;div.text.show-more__control&quot;)
+  movierev3 &lt;- movierev3[1:25]
+  
+  moviedate3 &lt;- scrapemov3(&quot;span.review-date&quot;)
+  moviedate3 &lt;- moviedate3[1:25]
+  
+  movierate3 &lt;- scrapemov3(&quot;span.rating-other-user-rating&quot;)
+  movierate3 &lt;- movierate3[1:25]
+
+  
+  movie3 &lt;- rbind(moviedf3, data.frame(
+                          Category = moviecat3,
+                          Name = movname3,
+                          Reviewers_Name = nameofreviewer3,
+                          Reviews = movierev3,
+                          Review_Date = moviedate3,
+                          Rating = movierate3))</code></pre>
+<pre class="r"><code>movieurl4 &lt;- &quot;https://www.imdb.com/title/tt7466810/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf4 = data.frame()
+
+
+moviesession4 &lt;- bow(movieurl4,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov4 &lt;- function(selector){
+    scrape(moviesession4) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat4 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname4 &lt;- scrapemov4(&quot;a.subnav_heading&quot;)
+  movname4 &lt;- rep(movname4, 25)
+  movname4 &lt;- movname4[1:25]
+  
+  nameofreviewer4 &lt;- scrapemov4(&quot;span.display-name-link&quot;)
+  nameofreviewer4 &lt;- nameofreviewer4[1:25]
+  
+  movierev4 &lt;- scrapemov4(&quot;div.text.show-more__control&quot;)
+  movierev4 &lt;- movierev4[1:25]
+  
+  moviedate4 &lt;- scrapemov4(&quot;span.review-date&quot;)
+  moviedate4 &lt;- moviedate4[1:25]
+  
+  movierate4 &lt;- scrapemov4(&quot;span.rating-other-user-rating&quot;)
+  movierate4 &lt;- movierate4[1:25]
+
+  
+  movie4 &lt;- rbind(moviedf4, data.frame(
+                          Category = moviecat4,
+                          Name = movname4,
+                          Reviewers_Name = nameofreviewer4,
+                          Reviews = movierev4,
+                          Review_Date = moviedate4,
+                          Rating = movierate4))</code></pre>
+<pre class="r"><code>movieurl5 &lt;- &quot;https://www.imdb.com/title/tt0079221/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf5 = data.frame()
+
+
+moviesession5 &lt;- bow(movieurl5,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov5 &lt;- function(selector){
+    scrape(moviesession5) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat5 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname5 &lt;- scrapemov5(&quot;a.subnav_heading&quot;)
+  movname5 &lt;- rep(movname5, 25)
+  movname5 &lt;- movname5[1:25]
+  
+  nameofreviewer5 &lt;- scrapemov5(&quot;span.display-name-link&quot;)
+  nameofreviewer5 &lt;- nameofreviewer5[1:25]
+  
+  movierev5 &lt;- scrapemov5(&quot;div.text.show-more__control&quot;)
+  movierev5 &lt;- movierev5[1:25]
+  
+  moviedate5 &lt;- scrapemov5(&quot;span.review-date&quot;)
+  moviedate5 &lt;- moviedate5[1:25]
+  
+  movierate5 &lt;- scrapemov5(&quot;span.rating-other-user-rating&quot;)
+  movierate5 &lt;- movierate5[1:25]
+
+  
+  movie5 &lt;- rbind(moviedf5, data.frame(
+                          Category = moviecat5,
+                          Name = movname5,
+                          Reviewers_Name = nameofreviewer5,
+                          Reviews = movierev5,
+                          Review_Date = moviedate5,
+                          Rating = movierate5))</code></pre>
+<pre class="r"><code>movieurl6 &lt;- &quot;https://www.imdb.com/title/tt9263550/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf6 = data.frame()
+
+
+moviesession6 &lt;- bow(movieurl6,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov6 &lt;- function(selector){
+    scrape(moviesession6) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat6 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname6 &lt;- scrapemov6(&quot;a.subnav_heading&quot;)
+  movname6 &lt;- rep(movname6, 25)
+  movname6 &lt;- movname6[1:25]
+  
+  nameofreviewer6 &lt;- scrapemov6(&quot;span.display-name-link&quot;)
+  nameofreviewer6 &lt;- nameofreviewer6[1:25]
+  
+  movierev6 &lt;- scrapemov6(&quot;div.text.show-more__control&quot;)
+  movierev6 &lt;- movierev6[1:25]
+  
+  moviedate6 &lt;- scrapemov6(&quot;span.review-date&quot;)
+  moviedate6 &lt;- moviedate6[1:25]
+  
+  movierate6 &lt;- scrapemov6(&quot;span.rating-other-user-rating&quot;)
+  movierate6 &lt;- movierate6[1:25]
+
+  
+  movie6 &lt;- rbind(moviedf6, data.frame(
+                          Category = moviecat6,
+                          Name = movname6,
+                          Reviewers_Name = nameofreviewer6,
+                          Reviews = movierev6,
+                          Review_Date = moviedate6,
+                          Rating = movierate6))</code></pre>
+<pre class="r"><code>movieurl7 &lt;- &quot;https://www.imdb.com/title/tt0367495/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf7 = data.frame()
+
+
+moviesession7 &lt;- bow(movieurl7,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov7 &lt;- function(selector){
+    scrape(moviesession7) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat7 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname7 &lt;- scrapemov7(&quot;a.subnav_heading&quot;)
+  movname7 &lt;- rep(movname7, 25)
+  movname7 &lt;- movname7[1:25]
+  
+  nameofreviewer7 &lt;- scrapemov7(&quot;span.display-name-link&quot;)
+  nameofreviewer7 &lt;- nameofreviewer7[1:25]
+  
+  movierev7 &lt;- scrapemov7(&quot;div.text.show-more__control&quot;)
+  movierev7 &lt;- movierev7[1:25]
+  
+  moviedate7 &lt;- scrapemov7(&quot;span.review-date&quot;)
+  moviedate7 &lt;- moviedate7[1:25]
+  
+  movierate7 &lt;- scrapemov7(&quot;span.rating-other-user-rating&quot;)
+  movierate7 &lt;- movierate7[1:25]
+
+  
+  movie7 &lt;- rbind(moviedf7, data.frame(
+                          Category = moviecat7,
+                          Name = movname7,
+                          Reviewers_Name = nameofreviewer7,
+                          Reviews = movierev7,
+                          Review_Date = moviedate7,
+                          Rating = movierate7))</code></pre>
+<pre class="r"><code>movieurl8 &lt;- &quot;https://www.imdb.com/title/tt8176054/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf8 = data.frame()
+
+
+moviesession8 &lt;- bow(movieurl8,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov8 &lt;- function(selector){
+    scrape(moviesession8) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat8 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname8 &lt;- scrapemov8(&quot;a.subnav_heading&quot;)
+  movname8 &lt;- rep(movname8, 25)
+  movname8 &lt;- movname8[1:25]
+  
+  nameofreviewer8 &lt;- scrapemov8(&quot;span.display-name-link&quot;)
+  nameofreviewer8 &lt;- nameofreviewer8[1:25]
+  
+  movierev8 &lt;- scrapemov8(&quot;div.text.show-more__control&quot;)
+  movierev8 &lt;- movierev8[1:25]
+  
+  moviedate8 &lt;- scrapemov8(&quot;span.review-date&quot;)
+  moviedate8 &lt;- moviedate8[1:25]
+  
+  movierate8 &lt;- scrapemov8(&quot;span.rating-other-user-rating&quot;)
+  movierate8 &lt;- movierate8[1:25]
+
+  
+  movie8 &lt;- rbind(moviedf8, data.frame(
+                          Category = moviecat8,
+                          Name = movname8,
+                          Reviewers_Name = nameofreviewer8,
+                          Reviews = movierev8,
+                          Review_Date = moviedate8,
+                          Rating = movierate8))</code></pre>
+<pre class="r"><code>movieurl9 &lt;- &quot;https://www.imdb.com/title/tt0214915/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf9 = data.frame()
+
+
+moviesession9 &lt;- bow(movieurl9,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov9 &lt;- function(selector){
+    scrape(moviesession9) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat9 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname9 &lt;- scrapemov9(&quot;a.subnav_heading&quot;)
+  movname9 &lt;- rep(movname9, 25)
+  movname9 &lt;- movname9[1:25]
+  
+  nameofreviewer9 &lt;- scrapemov9(&quot;span.display-name-link&quot;)
+  nameofreviewer9 &lt;- nameofreviewer9[1:25]
+  
+  movierev9 &lt;- scrapemov9(&quot;div.text.show-more__control&quot;)
+  movierev9 &lt;- movierev9[1:25]
+  
+  moviedate9 &lt;- scrapemov9(&quot;span.review-date&quot;)
+  moviedate9 &lt;- moviedate9[1:25]
+  
+  movierate9 &lt;- scrapemov9(&quot;span.rating-other-user-rating&quot;)
+  movierate9 &lt;- movierate9[1:25]
+
+  
+  movie9 &lt;- rbind(moviedf9, data.frame(
+                          Category = moviecat9,
+                          Name = movname9,
+                          Reviewers_Name = nameofreviewer9,
+                          Reviews = movierev9,
+                          Review_Date = moviedate9,
+                          Rating = movierate9))</code></pre>
+<pre class="r"><code>movieurl10 &lt;- &quot;https://www.imdb.com/title/tt1187043/reviews/?ref_=tt_ov_rt&quot;
+
+moviedf10 = data.frame()
+
+
+moviesession10 &lt;- bow(movieurl10,user_agent = &quot;For Educational Purposes&quot;)
+
+
+
+
+ scrapemov10 &lt;- function(selector){
+    scrape(moviesession10) %&gt;%
+      html_nodes(selector) %&gt;%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat10 &lt;- rep(&quot;Movie&quot;, 25)
+
+  movname10 &lt;- scrapemov10(&quot;a.subnav_heading&quot;)
+  movname10 &lt;- rep(movname10, 25)
+  movname10 &lt;- movname10[1:25]
+  
+  nameofreviewer10 &lt;- scrapemov10(&quot;span.display-name-link&quot;)
+  nameofreviewer10 &lt;- nameofreviewer10[1:25]
+  
+  movierev10 &lt;- scrapemov10(&quot;div.text.show-more__control&quot;)
+  movierev10 &lt;- movierev10[1:25]
+  
+  moviedate10 &lt;- scrapemov10(&quot;span.review-date&quot;)
+  moviedate10 &lt;- moviedate10[1:25]
+  
+  movierate10 &lt;- scrapemov10(&quot;span.rating-other-user-rating&quot;)
+  movierate10 &lt;- movierate10[1:25]
+
+  
+  movie10 &lt;- rbind(moviedf10, data.frame(
+                          Category = moviecat10,
+                          Name = movname10,
+                          Reviewers_Name = nameofreviewer10,
+                          Reviews = movierev10,
+                          Review_Date = moviedate10,
+                          Rating = movierate10))</code></pre>
+<pre class="r"><code>Combined_25_movies &lt;- rbind(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8,movie9,movie10)</code></pre>
 
 
 

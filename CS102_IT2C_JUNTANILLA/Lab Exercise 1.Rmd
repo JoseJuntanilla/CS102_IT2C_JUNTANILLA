@@ -851,3 +851,478 @@ seconditem10 <- rbind(proddf10, data.frame(
 second_product_combine <- rbind(seconditem,seconditem2,seconditem3,seconditem4,seconditem5,seconditem6,seconditem7,seconditem8,seconditem9,seconditem10)
 
 ```
+
+Movies With Reviews
+```{r}
+movieurl <- "https://www.imdb.com/title/tt23849204/reviews/?ref_=tt_ov_rt"
+
+moviedf = data.frame()
+
+
+moviesession <- bow(movieurl,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov <- function(selector){
+    scrape(moviesession) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat <- rep("Movie", 25)
+
+  movname <- scrapemov("a.subnav_heading")
+  movname <- rep(movname, 25)
+  movname <- movname[1:25]
+  
+  nameofreviewer <- scrapemov("span.display-name-link")
+  nameofreviewer <- nameofreviewer[1:25]
+  
+  movierev <- scrapemov("div.text.show-more__control")
+  movierev <- movierev[1:25]
+  
+  moviedate <- scrapemov("span.review-date")
+  moviedate <- moviedate[1:25]
+  
+  movierate <- scrapemov("span.rating-other-user-rating")
+  movierate <- movierate[1:25]
+
+  
+  movie1 <- rbind(moviedf, data.frame(
+                          Category = moviecat,
+                          Name = movname,
+                          Reviewers_Name = nameofreviewer,
+                          Reviews = movierev,
+                          Review_Date = moviedate,
+                          Rating = movierate))
+
+```
+
+```{r}
+movieurl2 <- "https://www.imdb.com/title/tt0259534/reviews/?ref_=tt_ov_rt"
+
+moviedf2 = data.frame()
+
+
+moviesession2 <- bow(movieurl2,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov2 <- function(selector){
+    scrape(moviesession2) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat2 <- rep("Movie", 25)
+
+  movname2 <- scrapemov2("a.subnav_heading")
+  movname2 <- rep(movname2, 25)
+  movname2 <- movname2[1:25]
+  
+  nameofreviewer2 <- scrapemov2("span.display-name-link")
+  nameofreviewer2 <- nameofreviewer2[1:25]
+  
+  movierev2 <- scrapemov2("div.text.show-more__control")
+  movierev2 <- movierev2[1:25]
+  
+  moviedate2 <- scrapemov2("span.review-date")
+  moviedate2 <- moviedate2[1:25]
+  
+  movierate2 <- scrapemov2("span.rating-other-user-rating")
+  movierate2 <- movierate2[1:25]
+
+  
+  movie2 <- rbind(moviedf2, data.frame(
+                          Category = moviecat2,
+                          Name = movname2,
+                          Reviewers_Name = nameofreviewer2,
+                          Reviews = movierev2,
+                          Review_Date = moviedate2,
+                          Rating = movierate2))
+
+```
+
+```{r}
+movieurl3 <- "https://www.imdb.com/title/tt0093603/reviews/?ref_=tt_ov_rt"
+
+moviedf3 = data.frame()
+
+
+moviesession3 <- bow(movieurl3,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov3 <- function(selector){
+    scrape(moviesession3) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat3 <- rep("Movie", 25)
+
+  movname3 <- scrapemov3("a.subnav_heading")
+  movname3 <- rep(movname3, 25)
+  movname3 <- movname3[1:25]
+  
+  nameofreviewer3 <- scrapemov3("span.display-name-link")
+  nameofreviewer3 <- nameofreviewer3[1:25]
+  
+  movierev3 <- scrapemov3("div.text.show-more__control")
+  movierev3 <- movierev3[1:25]
+  
+  moviedate3 <- scrapemov3("span.review-date")
+  moviedate3 <- moviedate3[1:25]
+  
+  movierate3 <- scrapemov3("span.rating-other-user-rating")
+  movierate3 <- movierate3[1:25]
+
+  
+  movie3 <- rbind(moviedf3, data.frame(
+                          Category = moviecat3,
+                          Name = movname3,
+                          Reviewers_Name = nameofreviewer3,
+                          Reviews = movierev3,
+                          Review_Date = moviedate3,
+                          Rating = movierate3))
+
+```
+
+```{r}
+movieurl4 <- "https://www.imdb.com/title/tt7466810/reviews/?ref_=tt_ov_rt"
+
+moviedf4 = data.frame()
+
+
+moviesession4 <- bow(movieurl4,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov4 <- function(selector){
+    scrape(moviesession4) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat4 <- rep("Movie", 25)
+
+  movname4 <- scrapemov4("a.subnav_heading")
+  movname4 <- rep(movname4, 25)
+  movname4 <- movname4[1:25]
+  
+  nameofreviewer4 <- scrapemov4("span.display-name-link")
+  nameofreviewer4 <- nameofreviewer4[1:25]
+  
+  movierev4 <- scrapemov4("div.text.show-more__control")
+  movierev4 <- movierev4[1:25]
+  
+  moviedate4 <- scrapemov4("span.review-date")
+  moviedate4 <- moviedate4[1:25]
+  
+  movierate4 <- scrapemov4("span.rating-other-user-rating")
+  movierate4 <- movierate4[1:25]
+
+  
+  movie4 <- rbind(moviedf4, data.frame(
+                          Category = moviecat4,
+                          Name = movname4,
+                          Reviewers_Name = nameofreviewer4,
+                          Reviews = movierev4,
+                          Review_Date = moviedate4,
+                          Rating = movierate4))
+
+```
+
+```{r}
+movieurl5 <- "https://www.imdb.com/title/tt0079221/reviews/?ref_=tt_ov_rt"
+
+moviedf5 = data.frame()
+
+
+moviesession5 <- bow(movieurl5,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov5 <- function(selector){
+    scrape(moviesession5) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat5 <- rep("Movie", 25)
+
+  movname5 <- scrapemov5("a.subnav_heading")
+  movname5 <- rep(movname5, 25)
+  movname5 <- movname5[1:25]
+  
+  nameofreviewer5 <- scrapemov5("span.display-name-link")
+  nameofreviewer5 <- nameofreviewer5[1:25]
+  
+  movierev5 <- scrapemov5("div.text.show-more__control")
+  movierev5 <- movierev5[1:25]
+  
+  moviedate5 <- scrapemov5("span.review-date")
+  moviedate5 <- moviedate5[1:25]
+  
+  movierate5 <- scrapemov5("span.rating-other-user-rating")
+  movierate5 <- movierate5[1:25]
+
+  
+  movie5 <- rbind(moviedf5, data.frame(
+                          Category = moviecat5,
+                          Name = movname5,
+                          Reviewers_Name = nameofreviewer5,
+                          Reviews = movierev5,
+                          Review_Date = moviedate5,
+                          Rating = movierate5))
+
+```
+
+```{r}
+movieurl6 <- "https://www.imdb.com/title/tt9263550/reviews/?ref_=tt_ov_rt"
+
+moviedf6 = data.frame()
+
+
+moviesession6 <- bow(movieurl6,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov6 <- function(selector){
+    scrape(moviesession6) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat6 <- rep("Movie", 25)
+
+  movname6 <- scrapemov6("a.subnav_heading")
+  movname6 <- rep(movname6, 25)
+  movname6 <- movname6[1:25]
+  
+  nameofreviewer6 <- scrapemov6("span.display-name-link")
+  nameofreviewer6 <- nameofreviewer6[1:25]
+  
+  movierev6 <- scrapemov6("div.text.show-more__control")
+  movierev6 <- movierev6[1:25]
+  
+  moviedate6 <- scrapemov6("span.review-date")
+  moviedate6 <- moviedate6[1:25]
+  
+  movierate6 <- scrapemov6("span.rating-other-user-rating")
+  movierate6 <- movierate6[1:25]
+
+  
+  movie6 <- rbind(moviedf6, data.frame(
+                          Category = moviecat6,
+                          Name = movname6,
+                          Reviewers_Name = nameofreviewer6,
+                          Reviews = movierev6,
+                          Review_Date = moviedate6,
+                          Rating = movierate6))
+
+```
+
+```{r}
+movieurl7 <- "https://www.imdb.com/title/tt0367495/reviews/?ref_=tt_ov_rt"
+
+moviedf7 = data.frame()
+
+
+moviesession7 <- bow(movieurl7,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov7 <- function(selector){
+    scrape(moviesession7) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat7 <- rep("Movie", 25)
+
+  movname7 <- scrapemov7("a.subnav_heading")
+  movname7 <- rep(movname7, 25)
+  movname7 <- movname7[1:25]
+  
+  nameofreviewer7 <- scrapemov7("span.display-name-link")
+  nameofreviewer7 <- nameofreviewer7[1:25]
+  
+  movierev7 <- scrapemov7("div.text.show-more__control")
+  movierev7 <- movierev7[1:25]
+  
+  moviedate7 <- scrapemov7("span.review-date")
+  moviedate7 <- moviedate7[1:25]
+  
+  movierate7 <- scrapemov7("span.rating-other-user-rating")
+  movierate7 <- movierate7[1:25]
+
+  
+  movie7 <- rbind(moviedf7, data.frame(
+                          Category = moviecat7,
+                          Name = movname7,
+                          Reviewers_Name = nameofreviewer7,
+                          Reviews = movierev7,
+                          Review_Date = moviedate7,
+                          Rating = movierate7))
+
+```
+
+```{r}
+movieurl8 <- "https://www.imdb.com/title/tt8176054/reviews/?ref_=tt_ov_rt"
+
+moviedf8 = data.frame()
+
+
+moviesession8 <- bow(movieurl8,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov8 <- function(selector){
+    scrape(moviesession8) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat8 <- rep("Movie", 25)
+
+  movname8 <- scrapemov8("a.subnav_heading")
+  movname8 <- rep(movname8, 25)
+  movname8 <- movname8[1:25]
+  
+  nameofreviewer8 <- scrapemov8("span.display-name-link")
+  nameofreviewer8 <- nameofreviewer8[1:25]
+  
+  movierev8 <- scrapemov8("div.text.show-more__control")
+  movierev8 <- movierev8[1:25]
+  
+  moviedate8 <- scrapemov8("span.review-date")
+  moviedate8 <- moviedate8[1:25]
+  
+  movierate8 <- scrapemov8("span.rating-other-user-rating")
+  movierate8 <- movierate8[1:25]
+
+  
+  movie8 <- rbind(moviedf8, data.frame(
+                          Category = moviecat8,
+                          Name = movname8,
+                          Reviewers_Name = nameofreviewer8,
+                          Reviews = movierev8,
+                          Review_Date = moviedate8,
+                          Rating = movierate8))
+
+```
+
+```{r}
+movieurl9 <- "https://www.imdb.com/title/tt0214915/reviews/?ref_=tt_ov_rt"
+
+moviedf9 = data.frame()
+
+
+moviesession9 <- bow(movieurl9,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov9 <- function(selector){
+    scrape(moviesession9) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat9 <- rep("Movie", 25)
+
+  movname9 <- scrapemov9("a.subnav_heading")
+  movname9 <- rep(movname9, 25)
+  movname9 <- movname9[1:25]
+  
+  nameofreviewer9 <- scrapemov9("span.display-name-link")
+  nameofreviewer9 <- nameofreviewer9[1:25]
+  
+  movierev9 <- scrapemov9("div.text.show-more__control")
+  movierev9 <- movierev9[1:25]
+  
+  moviedate9 <- scrapemov9("span.review-date")
+  moviedate9 <- moviedate9[1:25]
+  
+  movierate9 <- scrapemov9("span.rating-other-user-rating")
+  movierate9 <- movierate9[1:25]
+
+  
+  movie9 <- rbind(moviedf9, data.frame(
+                          Category = moviecat9,
+                          Name = movname9,
+                          Reviewers_Name = nameofreviewer9,
+                          Reviews = movierev9,
+                          Review_Date = moviedate9,
+                          Rating = movierate9))
+
+```
+
+```{r}
+movieurl10 <- "https://www.imdb.com/title/tt1187043/reviews/?ref_=tt_ov_rt"
+
+moviedf10 = data.frame()
+
+
+moviesession10 <- bow(movieurl10,user_agent = "For Educational Purposes")
+
+
+
+
+ scrapemov10 <- function(selector){
+    scrape(moviesession10) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+ }
+ 
+  moviecat10 <- rep("Movie", 25)
+
+  movname10 <- scrapemov10("a.subnav_heading")
+  movname10 <- rep(movname10, 25)
+  movname10 <- movname10[1:25]
+  
+  nameofreviewer10 <- scrapemov10("span.display-name-link")
+  nameofreviewer10 <- nameofreviewer10[1:25]
+  
+  movierev10 <- scrapemov10("div.text.show-more__control")
+  movierev10 <- movierev10[1:25]
+  
+  moviedate10 <- scrapemov10("span.review-date")
+  moviedate10 <- moviedate10[1:25]
+  
+  movierate10 <- scrapemov10("span.rating-other-user-rating")
+  movierate10 <- movierate10[1:25]
+
+  
+  movie10 <- rbind(moviedf10, data.frame(
+                          Category = moviecat10,
+                          Name = movname10,
+                          Reviewers_Name = nameofreviewer10,
+                          Reviews = movierev10,
+                          Review_Date = moviedate10,
+                          Rating = movierate10))
+
+```
+
+```{r}
+Combined_25_movies <- rbind(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8,movie9,movie10)
+```
