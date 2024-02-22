@@ -708,7 +708,8 @@ firstitem10 &lt;- rbind(itemdf10, data.frame(
                       Price = itemprice10,
                       Ratings = itemrate10,
                       TotalReview = itemreview10))</code></pre>
-<pre class="r"><code>first_product_combine &lt;- rbind(firstitem,firstitem2,firstitem3,firstitem4,firstitem5,firstitem6,firstitem7,firstitem8,firstitem9,firstitem10)</code></pre>
+<pre class="r"><code>first_product_combine &lt;- rbind(firstitem,firstitem2,firstitem3,firstitem4,firstitem5,firstitem6,firstitem7,firstitem8,firstitem9,firstitem10)
+write.csv(first_product_combine, file = &quot;FirstProduct.csv&quot;)</code></pre>
 <p>SECOND PRODUCT TOYS</p>
 <pre class="r"><code>linkurl &lt;- &quot;https://www.amazon.co.uk/s?bbn=364272031&amp;rh=n%3A364272031%2Cp_n_age_range%3A4220475031&amp;dc&amp;qid=1708180905&amp;rnid=391457011&amp;ref=lp&quot;
   
@@ -1075,7 +1076,8 @@ seconditem10 &lt;- rbind(proddf10, data.frame(
                       Price = productprice10,
                       Ratings = productrate10,
                       TotalReview = productrev10))</code></pre>
-<pre class="r"><code>second_product_combine &lt;- rbind(seconditem,seconditem2,seconditem3,seconditem4,seconditem5,seconditem6,seconditem7,seconditem8,seconditem9,seconditem10)</code></pre>
+<pre class="r"><code>second_product_combine &lt;- rbind(seconditem,seconditem2,seconditem3,seconditem4,seconditem5,seconditem6,seconditem7,seconditem8,seconditem9,seconditem10)
+write.csv(second_product_combine,file = &quot;SecondProduct.csv&quot;)</code></pre>
 <p>Movies With Reviews</p>
 <pre class="r"><code>movieurl &lt;- &quot;https://www.imdb.com/title/tt23849204/reviews/?ref_=tt_ov_rt&quot;
 
@@ -1507,7 +1509,8 @@ moviesession10 &lt;- bow(movieurl10,user_agent = &quot;For Educational Purposes&
                           Reviews = movierev10,
                           Review_Date = moviedate10,
                           Rating = movierate10))</code></pre>
-<pre class="r"><code>Combined_25_movies &lt;- rbind(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8,movie9,movie10)</code></pre>
+<pre class="r"><code>Combined_25_movies &lt;- rbind(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8,movie9,movie10)
+write.csv(Combined_25_movies,file = &quot;MoviesReview25.csv&quot;)</code></pre>
 
 
 

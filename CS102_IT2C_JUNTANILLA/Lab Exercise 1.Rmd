@@ -410,8 +410,11 @@ firstitem10 <- rbind(itemdf10, data.frame(
 
 
 ```
+
 ```{r}
+
 first_product_combine <- rbind(firstitem,firstitem2,firstitem3,firstitem4,firstitem5,firstitem6,firstitem7,firstitem8,firstitem9,firstitem10)
+write.csv(first_product_combine, file = "FirstProduct.csv")
 
 ```
 
@@ -849,6 +852,7 @@ seconditem10 <- rbind(proddf10, data.frame(
 
 ```{r}
 second_product_combine <- rbind(seconditem,seconditem2,seconditem3,seconditem4,seconditem5,seconditem6,seconditem7,seconditem8,seconditem9,seconditem10)
+write.csv(second_product_combine,file = "SecondProduct.csv")
 
 ```
 
@@ -1325,4 +1329,5 @@ moviesession10 <- bow(movieurl10,user_agent = "For Educational Purposes")
 
 ```{r}
 Combined_25_movies <- rbind(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8,movie9,movie10)
+write.csv(Combined_25_movies,file = "MoviesReview25.csv")
 ```
