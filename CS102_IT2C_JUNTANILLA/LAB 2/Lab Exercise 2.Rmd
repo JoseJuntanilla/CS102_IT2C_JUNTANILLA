@@ -1,0 +1,3438 @@
+---
+title: "CS_102_IT2C_JUNTANILLA_LAB2"
+author: "Jose Roland Juntanilla"
+date: "2024-02-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+library(xml2)
+
+```
+
+
+#FIRST PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+
+```{r}
+prodlink <- "https://www.amazon.co.uk/Antivirus-software-subscription-automatic-Activation/product-reviews/B07V3GPRMV/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+reviewsdf <- data.frame()
+
+revsession <- bow(prodlink,user_agent = "For Educational Purposes")
+
+    reviewscrape <- function(selector){
+    scrape(revsession) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname <- reviewscrape("h1.a-size-large.a-text-ellipsis")
+  prodname <- rep(prodname,10)
+  prodname <- prodname[1:10]
+  
+  
+  prodrate <- reviewscrape("span.a-icon-alt")
+  prodrate <- prodrate[1:10]
+  
+  revname <- reviewscrape("span.a-profile-name")
+  revname <- revname[1:10]
+  
+  reviewerrev <- reviewscrape("span.a-size-base.review-text")
+  reviewerrev <- reviewerrev[1:10]
+  
+  typeofrev <- reviewscrape("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev <- typeofrev[1:10]
+  
+  revdate <- reviewscrape("span.a-size-base.a-color-secondary.review-date")
+  revdate <- revdate[1:10]
+  
+  tablerev <- rbind(reviewsdf,data.frame(
+             Name = prodname,
+             Rate = prodrate,
+             Type_of_Review = typeofrev,
+             Reviewers_name = revname,
+             Reviews = reviewerrev,
+             Data_of_Reviews = revdate
+  ))
+  
+```
+
+
+```{r}
+prodlink2 <- "https://www.amazon.co.uk/Antivirus-software-subscription-automatic-Activation/product-reviews/B07V3GPRMV/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+reviewsdf2 <- data.frame()
+
+revsession2 <- bow(prodlink2,user_agent = "For Educational Purposes")
+
+    reviewscrape2 <- function(selector){
+    scrape(revsession2) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname2 <- reviewscrape2("h1.a-size-large.a-text-ellipsis")
+  prodname2 <- rep(prodname2, 10)
+  prodname2 <- prodname2[1:10]
+  
+  prodrate2 <- reviewscrape2("span.a-icon-alt")
+  prodrate2 <- prodrate2[1:10]
+  
+  revname2 <- reviewscrape2("span.a-profile-name")
+  revname2 <- revname2[1:10]
+  
+  reviewerrev2 <- reviewscrape2("span.a-size-base.review-text")
+  reviewerrev2 <- reviewerrev2[1:10]
+  
+  typeofrev2 <- reviewscrape2("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev2 <- typeofrev2[1:10]
+  
+  revdate2 <- reviewscrape2("span.a-size-base.a-color-secondary.review-date")
+  revdate2 <- revdate2[1:10]
+  
+  tablerev2 <- rbind(reviewsdf2,data.frame(
+             Name = prodname2,
+             Rate = prodrate2,
+             Type_of_Review = typeofrev2,
+             Reviewers_name = revname2,
+             Reviews = reviewerrev2,
+             Data_of_Reviews = revdate2
+  ))
+```
+
+```{r}
+prodlink3 <- "https://www.amazon.co.uk/Antivirus-software-subscription-automatic-Activation/product-reviews/B07V3GPRMV/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+reviewsdf3 <- data.frame()
+
+revsession3 <- bow(prodlink3,user_agent = "For Educational Purposes")
+
+    reviewscrape3 <- function(selector){
+    scrape(revsession3) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname3 <- reviewscrape3("h1.a-size-large.a-text-ellipsis")
+  prodname3 <- rep(prodname3, 10)
+  prodname3 <- prodname3[1:10]
+  
+  prodrate3 <- reviewscrape3("span.a-icon-alt")
+  prodrate3 <- prodrate3[1:10]
+  
+  revname3 <- reviewscrape3("span.a-profile-name")
+  revname3 <- revname3[1:10]
+  
+  reviewerrev3 <- reviewscrape3("span.a-size-base.review-text")
+  reviewerrev3 <- reviewerrev3[1:10]
+  
+  typeofrev3 <- reviewscrape3("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev3 <- typeofrev3[1:10]
+  
+  revdate3 <- reviewscrape3("span.a-size-base.a-color-secondary.review-date")
+  revdate3 <- revdate3[1:10]
+  
+  tablerev3 <- rbind(reviewsdf3,data.frame(
+             Name = prodname3,
+             Rate = prodrate3,
+             Type_of_Review = typeofrev3,
+             Reviewers_name = revname3,
+             Reviews = reviewerrev3,
+             Data_of_Reviews = revdate3
+  ))
+```
+
+```{r}
+prodlink4 <- "https://www.amazon.co.uk/Antivirus-software-subscription-automatic-Activation/product-reviews/B07V3GPRMV/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+reviewsdf4 <- data.frame()
+
+revsession4 <- bow(prodlink4,user_agent = "For Educational Purposes")
+
+    reviewscrape4 <- function(selector){
+    scrape(revsession4) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname4 <- reviewscrape4("h1.a-size-large.a-text-ellipsis")
+  prodname4 <- rep(prodname4,10)
+  prodname4 <- prodname4[1:10]
+  
+  
+  prodrate4 <- reviewscrape4("span.a-icon-alt")
+  prodrate4 <- prodrate4[1:10]
+  
+  revname4 <- reviewscrape4("span.a-profile-name")
+  revname4 <- revname4[1:10]
+  
+  reviewerrev4 <- reviewscrape4("span.a-size-base.review-text")
+  reviewerrev4 <- reviewerrev4[1:10]
+  
+  typeofrev4 <- reviewscrape4("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev4 <- typeofrev4[1:10]
+  
+  revdate4 <- reviewscrape4("span.a-size-base.a-color-secondary.review-date")
+  revdate4 <- revdate4[1:10]
+  
+  tablerev4 <- rbind(reviewsdf4,data.frame(
+             Name = prodname4,
+             Rate = prodrate4,
+             Type_of_Review = typeofrev4,
+             Reviewers_name = revname4,
+             Reviews = reviewerrev4,
+             Data_of_Reviews = revdate4
+  ))
+```
+
+```{r}
+prodlink5 <- "https://www.amazon.co.uk/Antivirus-software-subscription-automatic-Activation/product-reviews/B07V3GPRMV/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+reviewsdf5 <- data.frame()
+
+revsession5 <- bow(prodlink5,user_agent = "For Educational Purposes")
+
+    reviewscrape5 <- function(selector){
+    scrape(revsession5) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname5 <- reviewscrape5("h1.a-size-large.a-text-ellipsis")
+  prodname5 <- rep(prodname5,10)
+  prodname5 <- prodname5[1:10]
+  
+  
+  prodrate5 <- reviewscrape5("span.a-icon-alt")
+  prodrate5 <- prodrate5[1:10]
+  
+  revname5 <- reviewscrape5("span.a-profile-name")
+  revname5 <- revname5[1:10]
+  
+  reviewerrev5 <- reviewscrape5("span.a-size-base.review-text")
+  reviewerrev5 <- reviewerrev5[1:10]
+  
+  typeofrev5 <- reviewscrape5("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev5 <- typeofrev5[1:10]
+  
+  revdate5 <- reviewscrape5("span.a-size-base.a-color-secondary.review-date")
+  revdate5 <- revdate5[1:10]
+  
+  tablerev5 <- rbind(reviewsdf5,data.frame(
+             Name = prodname5,
+             Rate = prodrate5,
+             Type_of_Review = typeofrev5,
+             Reviewers_name = revname5,
+             Reviews = reviewerrev5,
+             Data_of_Reviews = revdate5
+  ))
+```
+
+```{r}
+prodrev1 <- rbind(tablerev,tablerev2,tablerev3,tablerev4,tablerev5)
+write.csv(prodrev1,file = "prod1.csv")
+
+```
+
+#SECOND PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+prodlink6 <- "https://www.amazon.co.uk/McAfee-Protection-Exclusive-Antivirus-Activation/product-reviews/B0BGPKNVYZ/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+reviewsdf6 <- data.frame()
+
+revsession6 <- bow(prodlink6,user_agent = "For Educational Purposes")
+
+    reviewscrape6 <- function(selector){
+    scrape(revsession6) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname6 <- reviewscrape6("h1.a-size-large.a-text-ellipsis")
+  prodname6 <- rep(prodname6,10)
+  prodname6 <- prodname6[1:10]
+  
+  
+  prodrate6 <- reviewscrape6("span.a-icon-alt")
+  prodrate6 <- prodrate6[1:10]
+  
+  revname6 <- reviewscrape6("span.a-profile-name")
+  revname6 <- revname6[1:10]
+  
+  reviewerrev6 <- reviewscrape6("span.a-size-base.review-text")
+  reviewerrev6 <- reviewerrev6[1:10]
+  
+  typeofrev6 <- reviewscrape6("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev6 <- typeofrev6[1:10]
+  
+  revdate6 <- reviewscrape6("span.a-size-base.a-color-secondary.review-date")
+  revdate6 <- revdate6[1:10]
+  
+  tablerev6 <- rbind(reviewsdf6,data.frame(
+             Name = prodname6,
+             Rate = prodrate6,
+             Type_of_Review = typeofrev6,
+             Reviewers_name = revname6,
+             Reviews = reviewerrev6,
+             Data_of_Reviews = revdate6
+  ))
+  
+```
+```{r}
+prodlink7 <- "https://www.amazon.co.uk/McAfee-Protection-Exclusive-Antivirus-Activation/product-reviews/B0BGPKNVYZ/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+reviewsdf7 <- data.frame()
+
+revsession7 <- bow(prodlink7,user_agent = "For Educational Purposes")
+
+    reviewscrape7 <- function(selector){
+    scrape(revsession7) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname7 <- reviewscrape7("h1.a-size-large.a-text-ellipsis")
+  prodname7 <- rep(prodname7,10)
+  prodname7 <- prodname7[1:10]
+  
+  
+  prodrate7 <- reviewscrape7("span.a-icon-alt")
+  prodrate7 <- prodrate7[1:10]
+  
+  revname7 <- reviewscrape7("span.a-profile-name")
+  revname7 <- revname7[1:10]
+  
+  reviewerrev7 <- reviewscrape7("span.a-size-base.review-text")
+  reviewerrev7 <- reviewerrev7[1:10]
+  
+  typeofrev7 <- reviewscrape7("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev7 <- typeofrev7[1:10]
+  
+  revdate7 <- reviewscrape7("span.a-size-base.a-color-secondary.review-date")
+  revdate7 <- revdate7[1:10]
+  
+  tablerev7 <- rbind(reviewsdf7,data.frame(
+             Name = prodname7,
+             Rate = prodrate7,
+             Type_of_Review = typeofrev7,
+             Reviewers_name = revname7,
+             Reviews = reviewerrev7,
+             Data_of_Reviews = revdate7
+  ))
+  
+```
+
+```{r}
+prodlink8 <- "https://www.amazon.co.uk/McAfee-Protection-Exclusive-Antivirus-Activation/product-reviews/B0BGPKNVYZ/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+reviewsdf8 <- data.frame()
+
+revsession8 <- bow(prodlink8,user_agent = "For Educational Purposes")
+
+    reviewscrape8 <- function(selector){
+    scrape(revsession8) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname8 <- reviewscrape8("h1.a-size-large.a-text-ellipsis")
+  prodname8 <- rep(prodname8,10)
+  prodname8 <- prodname8[1:10]
+  
+  
+  prodrate8 <- reviewscrape8("span.a-icon-alt")
+  prodrate8 <- prodrate8[1:10]
+  
+  revname8 <- reviewscrape8("span.a-profile-name")
+  revname8 <- revname8[1:10]
+  
+  reviewerrev8 <- reviewscrape8("span.a-size-base.review-text")
+  reviewerrev8 <- reviewerrev8[1:10]
+  
+  typeofrev8 <- reviewscrape8("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev8 <- typeofrev8[1:10]
+  
+  revdate8 <- reviewscrape8("span.a-size-base.a-color-secondary.review-date")
+  revdate8 <- revdate8[1:10]
+  
+  tablerev8 <- rbind(reviewsdf8,data.frame(
+             Name = prodname8,
+             Rate = prodrate8,
+             Type_of_Review = typeofrev8,
+             Reviewers_name = revname8,
+             Reviews = reviewerrev8,
+             Data_of_Reviews = revdate8
+  ))
+  
+```
+```{r}
+prodlink9 <- "https://www.amazon.co.uk/McAfee-Protection-Exclusive-Antivirus-Activation/product-reviews/B0BGPKNVYZ/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+reviewsdf9 <- data.frame()
+
+revsession9 <- bow(prodlink9,user_agent = "For Educational Purposes")
+
+    reviewscrape9 <- function(selector){
+    scrape(revsession9) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname9 <- reviewscrape9("h1.a-size-large.a-text-ellipsis")
+  prodname9 <- rep(prodname9,10)
+  prodname9 <- prodname9[1:10]
+  
+  
+  prodrate9 <- reviewscrape9("span.a-icon-alt")
+  prodrate9 <- prodrate9[1:10]
+  
+  revname9 <- reviewscrape9("span.a-profile-name")
+  revname9 <- revname9[1:10]
+  
+  reviewerrev9 <- reviewscrape9("span.a-size-base.review-text")
+  reviewerrev9 <- reviewerrev9[1:10]
+  
+  typeofrev9 <- reviewscrape9("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev9 <- typeofrev9[1:10]
+  
+  revdate9 <- reviewscrape9("span.a-size-base.a-color-secondary.review-date")
+  revdate9 <- revdate9[1:10]
+  
+  tablerev9 <- rbind(reviewsdf9,data.frame(
+             Name = prodname9,
+             Rate = prodrate9,
+             Type_of_Review = typeofrev9,
+             Reviewers_name = revname9,
+             Reviews = reviewerrev9,
+             Data_of_Reviews = revdate9
+  ))
+  
+```
+```{r}
+prodlink10 <- "https://www.amazon.co.uk/McAfee-Protection-Exclusive-Antivirus-Activation/product-reviews/B0BGPKNVYZ/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+reviewsdf10 <- data.frame()
+
+revsession10 <- bow(prodlink10,user_agent = "For Educational Purposes")
+
+    reviewscrape10 <- function(selector){
+    scrape(revsession10) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname10 <- reviewscrape10("h1.a-size-large.a-text-ellipsis")
+  prodname10 <- rep(prodname10,10)
+  prodname10 <- prodname10[1:10]
+  
+  
+  prodrate10 <- reviewscrape10("span.a-icon-alt")
+  prodrate10 <- prodrate10[1:10]
+  
+  revname10 <- reviewscrape10("span.a-profile-name")
+  revname10 <- revname10[1:10]
+  
+  reviewerrev10 <- reviewscrape10("span.a-size-base.review-text")
+  reviewerrev10 <- reviewerrev10[1:10]
+  
+  typeofrev10 <- reviewscrape10("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev10 <- typeofrev10[1:10]
+  
+  revdate10 <- reviewscrape10("span.a-size-base.a-color-secondary.review-date")
+  revdate10 <- revdate10[1:10]
+  
+  tablerev10 <- rbind(reviewsdf10,data.frame(
+             Name = prodname10,
+             Rate = prodrate10,
+             Type_of_Review = typeofrev10,
+             Reviewers_name = revname10,
+             Reviews = reviewerrev10,
+             Data_of_Reviews = revdate10
+  ))
+  
+```
+
+```{r}
+prodrev2 <- rbind(tablerev6,tablerev7,tablerev8,tablerev9,tablerev10)
+write.csv(prodrev2, file = "prod2.csv")
+```
+
+#THIRD PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+prodlink11 <- "https://www.amazon.co.uk/McAfee-Protection-Device-Android-Smartphones/product-reviews/B074TZ6TYL/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+reviewsdf11 <- data.frame()
+
+revsession11 <- bow(prodlink11,user_agent = "For Educational Purposes")
+
+    reviewscrape11 <- function(selector){
+    scrape(revsession11) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname11 <- reviewscrape11("h1.a-size-large.a-text-ellipsis")
+  prodname11 <- rep(prodname11,10)
+  prodname11 <- prodname11[1:10]
+  
+  
+  prodrate11 <- reviewscrape11("span.a-icon-alt")
+  prodrate11 <- prodrate11[1:10]
+  
+  revname11 <- reviewscrape11("span.a-profile-name")
+  revname11 <- revname11[1:10]
+  
+  reviewerrev11 <- reviewscrape11("span.a-size-base.review-text")
+  reviewerrev11 <- reviewerrev11[1:10]
+  
+  typeofrev11 <- reviewscrape11("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev11 <- typeofrev11[1:10]
+  
+  revdate11 <- reviewscrape11("span.a-size-base.a-color-secondary.review-date")
+  revdate11 <- revdate11[1:10]
+  
+  tablerev11 <- rbind(reviewsdf11,data.frame(
+             Name = prodname11,
+             Rate = prodrate11,
+             Type_of_Review = typeofrev11,
+             Reviewers_name = revname11,
+             Reviews = reviewerrev11,
+             Data_of_Reviews = revdate11
+  ))
+```
+
+```{r}
+prodlink12 <- "https://www.amazon.co.uk/McAfee-Protection-Device-Android-Smartphones/product-reviews/B074TZ6TYL/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+reviewsdf12 <- data.frame()
+
+revsession12 <- bow(prodlink12,user_agent = "For Educational Purposes")
+
+    reviewscrape12 <- function(selector){
+    scrape(revsession12) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname12 <- reviewscrape12("h1.a-size-large.a-text-ellipsis")
+  prodname12 <- rep(prodname12,10)
+  prodname12 <- prodname12[1:10]
+  
+  
+  prodrate12 <- reviewscrape12("span.a-icon-alt")
+  prodrate12 <- prodrate12[1:10]
+  
+  revname12 <- reviewscrape12("span.a-profile-name")
+  revname12 <- revname12[1:10]
+  
+  reviewerrev12 <- reviewscrape12("span.a-size-base.review-text")
+  reviewerrev12 <- reviewerrev12[1:10]
+  
+  typeofrev12 <- reviewscrape12("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev12 <- typeofrev12[1:10]
+  
+  revdate12 <- reviewscrape12("span.a-size-base.a-color-secondary.review-date")
+  revdate12 <- revdate12[1:10]
+  
+  tablerev12 <- rbind(reviewsdf12,data.frame(
+             Name = prodname12,
+             Rate = prodrate12,
+             Type_of_Review = typeofrev12,
+             Reviewers_name = revname12,
+             Reviews = reviewerrev12,
+             Data_of_Reviews = revdate12
+  ))
+```
+```{r}
+prodlink13 <- "https://www.amazon.co.uk/McAfee-Protection-Device-Android-Smartphones/product-reviews/B074TZ6TYL/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+reviewsdf13 <- data.frame()
+
+revsession13 <- bow(prodlink13,user_agent = "For Educational Purposes")
+
+    reviewscrape13 <- function(selector){
+    scrape(revsession13) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname13 <- reviewscrape13("h1.a-size-large.a-text-ellipsis")
+  prodname13 <- rep(prodname13,10)
+  prodname13 <- prodname13[1:10]
+  
+  
+  prodrate13 <- reviewscrape13("span.a-icon-alt")
+  prodrate13 <- prodrate13[1:10]
+  
+  revname13 <- reviewscrape13("span.a-profile-name")
+  revname13 <- revname13[1:10]
+  
+  reviewerrev13 <- reviewscrape13("span.a-size-base.review-text")
+  reviewerrev13 <- reviewerrev13[1:10]
+  
+  typeofrev13 <- reviewscrape13("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev13 <- typeofrev13[1:10]
+  
+  revdate13 <- reviewscrape13("span.a-size-base.a-color-secondary.review-date")
+  revdate13 <- revdate13[1:10]
+  
+  tablerev13 <- rbind(reviewsdf13,data.frame(
+             Name = prodname13,
+             Rate = prodrate13,
+             Type_of_Review = typeofrev13,
+             Reviewers_name = revname13,
+             Reviews = reviewerrev13,
+             Data_of_Reviews = revdate13
+  ))
+```
+
+```{r}
+prodlink14 <- "https://www.amazon.co.uk/McAfee-Protection-Device-Android-Smartphones/product-reviews/B074TZ6TYL/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+reviewsdf14 <- data.frame()
+
+revsession14 <- bow(prodlink14,user_agent = "For Educational Purposes")
+
+    reviewscrape14 <- function(selector){
+    scrape(revsession14) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname14 <- reviewscrape14("h1.a-size-large.a-text-ellipsis")
+  prodname14 <- rep(prodname14,10)
+  prodname14 <- prodname14[1:10]
+  
+  
+  prodrate14 <- reviewscrape14("span.a-icon-alt")
+  prodrate14 <- prodrate14[1:10]
+  
+  revname14 <- reviewscrape14("span.a-profile-name")
+  revname14 <- revname14[1:10]
+  
+  reviewerrev14 <- reviewscrape14("span.a-size-base.review-text")
+  reviewerrev14 <- reviewerrev14[1:10]
+  
+  typeofrev14 <- reviewscrape14("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev14 <- typeofrev14[1:10]
+  
+  revdate14 <- reviewscrape14("span.a-size-base.a-color-secondary.review-date")
+  revdate14 <- revdate13[1:10]
+  
+  tablerev14 <- rbind(reviewsdf14,data.frame(
+             Name = prodname14,
+             Rate = prodrate14,
+             Type_of_Review = typeofrev14,
+             Reviewers_name = revname14,
+             Reviews = reviewerrev14,
+             Data_of_Reviews = revdate14
+  ))
+```
+```{r}
+prodlink15 <- "https://www.amazon.co.uk/McAfee-Protection-Device-Android-Smartphones/product-reviews/B074TZ6TYL/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+reviewsdf15 <- data.frame()
+
+revsession15 <- bow(prodlink15,user_agent = "For Educational Purposes")
+
+    reviewscrape15 <- function(selector){
+    scrape(revsession15) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+    }
+    
+  prodname15 <- reviewscrape15("h1.a-size-large.a-text-ellipsis")
+  prodname15 <- rep(prodname15,10)
+  prodname15 <- prodname15[1:10]
+  
+  
+  prodrate15 <- reviewscrape15("span.a-icon-alt")
+  prodrate15 <- prodrate15[1:10]
+  
+  revname15 <- reviewscrape15("span.a-profile-name")
+  revname15 <-revname15[1:10]
+  
+  reviewerrev15 <- reviewscrape15("span.a-size-base.review-text")
+  reviewerrev15 <- reviewerrev15[1:10]
+  
+  typeofrev15 <- reviewscrape15("span.a-size-mini.a-color-state.a-text-bold")
+  typeofrev15 <- typeofrev15[1:10]
+  
+  revdate15 <- reviewscrape15("span.a-size-base.a-color-secondary.review-date")
+  revdate15 <- revdate15[1:10]
+  
+  tablerev15 <- rbind(reviewsdf15,data.frame(
+             Name = prodname15,
+             Rate = prodrate15,
+             Type_of_Review = typeofrev15,
+             Reviewers_name = revname15,
+             Reviews = reviewerrev15,
+             Data_of_Reviews = revdate15
+  ))
+```
+
+```{r}
+prodrev3 <- rbind(tablerev11,tablerev12,tablerev13,tablerev14,tablerev15)
+write.csv(prodrev3, file = "prod3.csv")
+```
+
+#FOURTH PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+reviews_df16 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink16 <- paste0("https://www.amazon.co.uk/Antivirus-Software-Subscription-Automatic-Activation/product-reviews/B09KM41731/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session16 <- bow(prodlink16, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape16 <- function(selector) {
+        scrape(session16) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname16 <- review_scrape16("h1.a-size-large.a-text-ellipsis")
+    prodname16 <- rep(prodname16, 10)
+    prodname16 <- prodname16[1:10]
+    
+    prodrate16 <- review_scrape16("span.a-icon-alt")
+    prodrate16 <- prodrate16[1:10]
+    
+    revname16 <- review_scrape16("span.a-profile-name")
+    revname16 <- revname16[1:10]
+    
+  reviewer_rev16 <- review_scrape16("span.a-size-base.review-text")
+  reviewer_rev16 <- reviewer_rev16[1:10]
+    
+  typeof_rev16 <- review_scrape16("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev16 <- typeof_rev16[1:10]
+    
+    revdate16 <- review_scrape16("span.a-size-base.a-color-secondary.review-date")
+    revdate16 <- revdate16[1:10]
+    
+
+    page_reviews_df16 <- data.frame(
+        Name = prodname16,
+        Rate = prodrate16,
+        Type_of_Review = typeof_rev16,
+        Reviewers_name = revname16,
+        Reviews = reviewer_rev16,
+        Data_of_Reviews = revdate16
+    )
+    
+   
+    reviews_df16 <- rbind(reviews_df16, page_reviews_df16)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df16, file = "prod4.csv")
+
+```
+
+#FIFTH PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+reviews_df17 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink17 <- paste0("https://www.amazon.co.uk/Kaspersky-Security-Devices-Android-Online/product-reviews/B07H6B4H85/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session17 <- bow(prodlink17, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape17 <- function(selector) {
+        scrape(session17) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname17 <-review_scrape17("h1.a-size-large.a-text-ellipsis")
+    prodname17 <- rep(prodname17, 10)
+    prodname17 <- prodname17[1:10]
+    
+    prodrate17 <- review_scrape17("span.a-icon-alt")
+    prodrate17 <- prodrate17[1:10]
+    
+    revname17 <- review_scrape17("span.a-profile-name")
+    revname17 <- revname17[1:10]
+    
+  reviewer_rev17 <- review_scrape17("span.a-size-base.review-text")
+  reviewer_rev17 <- reviewer_rev17[1:10]
+    
+  typeof_rev17 <-review_scrape17("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev17 <- typeof_rev17[1:10]
+    
+    revdate17 <- review_scrape17("span.a-size-base.a-color-secondary.review-date")
+    revdate17 <- revdate17[1:10]
+    
+
+    page_reviews_df17 <- data.frame(
+        Name = prodname17,
+        Rate = prodrate17,
+        Type_of_Review = typeof_rev17,
+        Reviewers_name = revname17,
+        Reviews = reviewer_rev17,
+        Data_of_Reviews = revdate17
+    )
+    
+   
+    reviews_df17 <- rbind(reviews_df17, page_reviews_df17)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df17, file = "prod5.csv")
+
+```
+
+#SIXTH PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+reviews_df18 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink18 <- paste0("https://www.amazon.co.uk/McAfee-Total-Protection-Device-Online/product-reviews/B0777RKM17/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session18 <- bow(prodlink18, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape18 <- function(selector) {
+        scrape(session18) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname18 <-review_scrape18("h1.a-size-large.a-text-ellipsis")
+    prodname18 <- rep(prodname18, 10)
+    prodname18 <- prodname18[1:10]
+    
+    prodrate18 <- review_scrape18("span.a-icon-alt")
+    prodrate18 <- prodrate18[1:10]
+    
+    revname18 <- review_scrape18("span.a-profile-name")
+    revname18 <- revname18[1:10]
+    
+  reviewer_rev18 <- review_scrape18("span.a-size-base.review-text")
+  reviewer_rev18 <- reviewer_rev18[1:10]
+    
+  typeof_rev18 <-review_scrape18("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev18 <- typeof_rev18[1:10]
+    
+    revdate18 <- review_scrape18("span.a-size-base.a-color-secondary.review-date")
+    revdate18 <- revdate18[1:10]
+    
+
+    page_reviews_df18 <- data.frame(
+        Name = prodname18,
+        Rate = prodrate18,
+        Type_of_Review = typeof_rev18,
+        Reviewers_name = revname18,
+        Reviews = reviewer_rev18,
+        Data_of_Reviews = revdate18
+    )
+    
+   
+    reviews_df18 <- rbind(reviews_df18, page_reviews_df18)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df18, file = "prod6.csv")
+
+```
+
+#SEVENTH PRODUCT(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+reviews_df19 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink19 <- paste0("https://www.amazon.co.uk/McAfee-Protection-Exclusive-Antivirus-Activation/product-reviews/B0BGPK442D/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session19 <- bow(prodlink19, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape19 <- function(selector) {
+        scrape(session19) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname19 <-review_scrape19("h1.a-size-large.a-text-ellipsis")
+    prodname19 <- rep(prodname19, 10)
+    prodname19 <- prodname19[1:10]
+    
+    prodrate19 <- review_scrape19("span.a-icon-alt")
+    prodrate19 <- prodrate19[1:10]
+    
+    revname19 <- review_scrape19("span.a-profile-name")
+    revname19 <- revname19[1:10]
+    
+  reviewer_rev19 <- review_scrape19("span.a-size-base.review-text")
+  reviewer_rev19 <- reviewer_rev19[1:10]
+    
+  typeof_rev19 <-review_scrape19("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev19 <- typeof_rev19[1:10]
+    
+    revdate19 <- review_scrape19("span.a-size-base.a-color-secondary.review-date")
+    revdate19 <- revdate19[1:10]
+    
+
+    page_reviews_df19 <- data.frame(
+        Name = prodname19,
+        Rate = prodrate19,
+        Type_of_Review = typeof_rev19,
+        Reviewers_name = revname19,
+        Reviews = reviewer_rev19,
+        Data_of_Reviews = revdate19
+    )
+    
+   
+    reviews_df19 <- rbind(reviews_df19, page_reviews_df19)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df19, file = "prod7.csv")
+
+```
+
+#EIGHT PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+reviews_df20 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink20 <- paste0("https://www.amazon.co.uk/Bitdefender-Total-Security-Subscription-Activation/product-reviews/B07VGJYMZQ/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session20 <- bow(prodlink20, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape20 <- function(selector) {
+        scrape(session20) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname20 <-review_scrape20("h1.a-size-large.a-text-ellipsis")
+    prodname20 <- rep(prodname20, 10)
+    prodname20 <- prodname20[1:10]
+    
+    prodrate20 <- review_scrape20("span.a-icon-alt")
+    prodrate20 <- prodrate20[1:10]
+    
+    revname20 <- review_scrape20("span.a-profile-name")
+    revname20 <- revname20[1:10]
+    
+  reviewer_rev20 <- review_scrape20("span.a-size-base.review-text")
+  reviewer_rev20 <- reviewer_rev20[1:10]
+    
+  typeof_rev20 <-review_scrape20("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev20 <- typeof_rev20[1:10]
+    
+    revdate20 <- review_scrape20("span.a-size-base.a-color-secondary.review-date")
+    revdate20 <- revdate20[1:10]
+    
+
+    page_reviews_df20 <- data.frame(
+        Name = prodname20,
+        Rate = prodrate20,
+        Type_of_Review = typeof_rev20,
+        Reviewers_name = revname20,
+        Reviews = reviewer_rev20,
+        Data_of_Reviews = revdate20
+    )
+    
+   
+    reviews_df20 <- rbind(reviews_df20, page_reviews_df20)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df20, file = "prod8.csv")
+
+```
+
+#NINTH PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+reviews_df21 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink21 <- paste0("https://www.amazon.co.uk/Norton-360-Premium-Utilities-2022/product-reviews/B09Y6CY8WG/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session21 <- bow(prodlink21, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape21 <- function(selector) {
+        scrape(session21) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname21 <-review_scrape21("h1.a-size-large.a-text-ellipsis")
+    prodname21 <- rep(prodname21, 10)
+    prodname21 <- prodname21[1:10]
+    
+    prodrate21 <- review_scrape21("span.a-icon-alt")
+    prodrate21 <- prodrate21[1:10]
+    
+    revname21 <- review_scrape21("span.a-profile-name")
+    revname21 <- revname21[1:10]
+    
+  reviewer_rev21 <- review_scrape21("span.a-size-base.review-text")
+  reviewer_rev21 <- reviewer_rev21[1:10]
+    
+  typeof_rev21 <-review_scrape21("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev21 <- typeof_rev21[1:10]
+    
+    revdate21 <- review_scrape21("span.a-size-base.a-color-secondary.review-date")
+    revdate21 <- revdate21[1:10]
+    
+
+    page_reviews_df21 <- data.frame(
+        Name = prodname21,
+        Rate = prodrate21,
+        Type_of_Review = typeof_rev21,
+        Reviewers_name = revname21,
+        Reviews = reviewer_rev21,
+        Data_of_Reviews = revdate21
+    )
+    
+   
+    reviews_df21 <- rbind(reviews_df21, page_reviews_df21)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df21, file = "prod9.csv")
+
+```
+
+#TENTH PRODUCT REVIEW(COMPUTER ANTIVIRUS SOFTWARE)
+```{r}
+reviews_df22 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink22 <- paste0("https://www.amazon.co.uk/Antivirus-Software-Subscription-%E2%80%8EAutomatic-Activation/product-reviews/B09KM8VZQC/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session22 <- bow(prodlink22, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape22 <- function(selector) {
+        scrape(session22) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname22 <-review_scrape22("h1.a-size-large.a-text-ellipsis")
+    prodname22 <- rep(prodname22, 10)
+    prodname22 <- prodname22[1:10]
+    
+    prodrate22 <- review_scrape22("span.a-icon-alt")
+    prodrate22 <- prodrate22[1:10]
+    
+    revname22 <- review_scrape22("span.a-profile-name")
+    revname22 <- revname22[1:10]
+    
+  reviewer_rev22 <- review_scrape22("span.a-size-base.review-text")
+  reviewer_rev22 <- reviewer_rev22[1:10]
+    
+  typeof_rev22 <-review_scrape22("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev22 <- typeof_rev22[1:10]
+    
+    revdate22 <- review_scrape22("span.a-size-base.a-color-secondary.review-date")
+    revdate22 <- revdate22[1:10]
+    
+
+    page_reviews_df22 <- data.frame(
+        Name = prodname22,
+        Rate = prodrate22,
+        Type_of_Review = typeof_rev22,
+        Reviewers_name = revname22,
+        Reviews = reviewer_rev22,
+        Data_of_Reviews = revdate22
+    )
+    
+   
+    reviews_df22 <- rbind(reviews_df22, page_reviews_df22)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df22, file = "prod10.csv")
+
+```
+
+
+#ELEVENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df23 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink23 <- paste0("https://www.amazon.co.uk/Gordons-London-Award-winning-Botanical-Litre/product-reviews/B01HZ6YAUW/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session23 <- bow(prodlink23, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape23 <- function(selector) {
+        scrape(session23) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname23 <- review_scrape23("h1.a-size-large.a-text-ellipsis")
+    prodname23 <- rep(prodname23, 10)
+    prodname23 <- prodname23[1:10]
+    
+    prodrate23 <- review_scrape23("span.a-icon-alt")
+    prodrate23 <- prodrate23[1:10]
+    
+    revname23 <- review_scrape23("span.a-profile-name")
+    revname23 <- revname23[1:10]
+    
+  reviewer_rev23 <- review_scrape23("span.a-size-base.review-text")
+  reviewer_rev23 <- reviewer_rev23[1:10]
+    
+  typeof_rev23 <- review_scrape23("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev23 <- typeof_rev23[1:10]
+    
+    revdate23 <- review_scrape23("span.a-size-base.a-color-secondary.review-date")
+    revdate23 <- revdate23[1:10]
+    
+
+    page_reviews_df23 <- data.frame(
+        Name = prodname23,
+        Rate = prodrate23,
+        Type_of_Review = typeof_rev23,
+        Reviewers_name = revname23,
+        Reviews = reviewer_rev23,
+        Data_of_Reviews = revdate23
+    )
+    
+   
+    reviews_df23 <- rbind(reviews_df23, page_reviews_df23)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df23, file = "prod11.csv")
+
+```
+
+#TWELFTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df24 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink24 <- paste0("https://www.amazon.co.uk/Talisker-Skye-Single-Scotch-Whisky/product-reviews/B004RYE9IY/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session24 <- bow(prodlink24, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape24 <- function(selector) {
+        scrape(session24) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname24 <- review_scrape24("h1.a-size-large.a-text-ellipsis")
+    prodname24 <- rep(prodname24, 10)
+    prodname24 <- prodname24[1:10]
+    
+    prodrate24 <- review_scrape24("span.a-icon-alt")
+    prodrate24 <- prodrate24[1:10]
+    
+    revname24 <- review_scrape24("span.a-profile-name")
+    revname24 <- revname24[1:10]
+    
+  reviewer_rev24 <- review_scrape24("span.a-size-base.review-text")
+  reviewer_rev24 <- reviewer_rev24[1:10]
+    
+  typeof_rev24 <- review_scrape24("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev24 <- typeof_rev24[1:10]
+    
+    revdate24 <- review_scrape24("span.a-size-base.a-color-secondary.review-date")
+    revdate24 <- revdate24[1:10]
+    
+
+    page_reviews_df24 <- data.frame(
+        Name = prodname24,
+        Rate = prodrate24,
+        Type_of_Review = typeof_rev24,
+        Reviewers_name = revname24,
+        Reviews = reviewer_rev24,
+        Data_of_Reviews = revdate24
+    )
+    
+   
+    reviews_df24 <- rbind(reviews_df24, page_reviews_df24)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df24, file = "prod12.csv")
+
+```
+#THIRTEENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df25 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink25 <- paste0("https://www.amazon.co.uk/Three-Barrels-Brandy-VSOP-70/product-reviews/B013H2U1U6/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session25 <- bow(prodlink25, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape25 <- function(selector) {
+        scrape(session25) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname25 <- review_scrape25("h1.a-size-large.a-text-ellipsis")
+    prodname25 <- rep(prodname25, 10)
+    prodname25 <- prodname25[1:10]
+    
+    prodrate25 <- review_scrape25("span.a-icon-alt")
+    prodrate25 <- prodrate25[1:10]
+    
+    revname25 <- review_scrape25("span.a-profile-name")
+    revname25 <- revname25[1:10]
+    
+  reviewer_rev25 <- review_scrape25("span.a-size-base.review-text")
+  reviewer_rev25 <- reviewer_rev25[1:10]
+    
+  typeof_rev25 <- review_scrape25("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev25 <- typeof_rev25[1:10]
+    
+    revdate25 <- review_scrape25("span.a-size-base.a-color-secondary.review-date")
+    revdate25 <- revdate25[1:10]
+    
+
+    page_reviews_df25 <- data.frame(
+        Name = prodname25,
+        Rate = prodrate25,
+        Type_of_Review = typeof_rev25,
+        Reviewers_name = revname25,
+        Reviews = reviewer_rev25,
+        Data_of_Reviews = revdate25
+    )
+    
+   
+    reviews_df25 <- rbind(reviews_df25, page_reviews_df25)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df25, file = "prod13.csv")
+
+```
+
+
+#FOURTEENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df26 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink26 <- paste0("https://www.amazon.co.uk/Glenmorangie-Year-Single-Scotch-Whisky/product-reviews/B001LM1FKU/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session26 <- bow(prodlink26, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape26 <- function(selector) {
+        scrape(session26) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname26 <- review_scrape26("h1.a-size-large.a-text-ellipsis")
+    prodname26 <- rep(prodname26, 10)
+    prodname26 <- prodname26[1:10]
+    
+    prodrate26 <- review_scrape26("span.a-icon-alt")
+    prodrate26 <- prodrate26[1:10]
+    
+    revname26 <- review_scrape26("span.a-profile-name")
+    revname26 <- revname26[1:10]
+    
+  reviewer_rev26 <- review_scrape26("span.a-size-base.review-text")
+  reviewer_rev26 <- reviewer_rev26[1:10]
+    
+  typeof_rev26 <- review_scrape26("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev26 <- typeof_rev26[1:10]
+    
+    revdate26 <- review_scrape26("span.a-size-base.a-color-secondary.review-date")
+    revdate26 <- revdate26[1:10]
+    
+
+    page_reviews_df26 <- data.frame(
+        Name = prodname26,
+        Rate = prodrate26,
+        Type_of_Review = typeof_rev26,
+        Reviewers_name = revname26,
+        Reviews = reviewer_rev26,
+        Data_of_Reviews = revdate26
+    )
+    
+   
+    reviews_df26 <- rbind(reviews_df26, page_reviews_df26)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df26, file = "prod14.csv")
+
+```
+
+#FIFTEENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df27 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink27 <- paste0("https://www.amazon.co.uk/Kraken-Cherry-Madagascan-Vanilla-Spiced/product-reviews/B07HN2MV6C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session27 <- bow(prodlink27, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape27 <- function(selector) {
+        scrape(session27) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname27 <- review_scrape27("h1.a-size-large.a-text-ellipsis")
+    prodname27 <- rep(prodname27, 10)
+    prodname27 <- prodname27[1:10]
+    
+    prodrate27 <- review_scrape27("span.a-icon-alt")
+    prodrate27 <- prodrate27[1:10]
+    
+    revname27 <- review_scrape27("span.a-profile-name")
+    revname27 <- revname27[1:10]
+    
+  reviewer_rev27 <- review_scrape27("span.a-size-base.review-text")
+  reviewer_rev27 <- reviewer_rev27[1:10]
+    
+  typeof_rev27 <- review_scrape27("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev27 <- typeof_rev27[1:10]
+    
+    revdate27 <- review_scrape27("span.a-size-base.a-color-secondary.review-date")
+    revdate27 <- revdate27[1:10]
+    
+
+    page_reviews_df27 <- data.frame(
+        Name = prodname27,
+        Rate = prodrate27,
+        Type_of_Review = typeof_rev27,
+        Reviewers_name = revname27,
+        Reviews = reviewer_rev27,
+        Data_of_Reviews = revdate27
+    )
+    
+   
+    reviews_df27 <- rbind(reviews_df27, page_reviews_df27)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df27, file = "prod15.csv")
+
+```
+
+
+#SIXTEENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df28 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink28 <- paste0("https://www.amazon.co.uk/Three-Barrels-Brandy-VSOP-70/product-reviews/B013H2U1U6/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session28 <- bow(prodlink28, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape28 <- function(selector) {
+        scrape(session28) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname28 <- review_scrape28("h1.a-size-large.a-text-ellipsis")
+    prodname28 <- rep(prodname28, 10)
+    prodname28 <- prodname28[1:10]
+    
+    prodrate28 <- review_scrape28("span.a-icon-alt")
+    prodrate28 <- prodrate28[1:10]
+    
+    revname28 <- review_scrape28("span.a-profile-name")
+    revname28 <- revname28[1:10]
+    
+  reviewer_rev28 <- review_scrape28("span.a-size-base.review-text")
+  reviewer_rev28 <- reviewer_rev17[1:10]
+    
+  typeof_rev28 <- review_scrape28("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev28 <- typeof_rev28[1:10]
+    
+    revdate28 <- review_scrape28("span.a-size-base.a-color-secondary.review-date")
+    revdate28 <- revdate28[1:10]
+    
+
+    page_reviews_df28 <- data.frame(
+        Name = prodname28,
+        Rate = prodrate28,
+        Type_of_Review = typeof_rev28,
+        Reviewers_name = revname28,
+        Reviews = reviewer_rev28,
+        Data_of_Reviews = revdate28
+    )
+    
+   
+    reviews_df28 <- rbind(reviews_df28, page_reviews_df28)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df28, file = "prod16.csv")
+
+```
+
+
+#SEVENTEENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df29 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink29 <- paste0("https://www.amazon.co.uk/Buffalo-Trace-Kentucky-Straight-Bourbon/product-reviews/B00CAIZZMI/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session29 <- bow(prodlink29, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape29 <- function(selector) {
+        scrape(session29) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname29 <- review_scrape29("h1.a-size-large.a-text-ellipsis")
+    prodname29 <- rep(prodname29, 10)
+    prodname29 <- prodname29[1:10]
+    
+    prodrate29 <- review_scrape29("span.a-icon-alt")
+    prodrate29 <- prodrate29[1:10]
+    
+    revname29 <- review_scrape29("span.a-profile-name")
+    revname29 <- revname29[1:10]
+    
+  reviewer_rev29 <- review_scrape29("span.a-size-base.review-text")
+  reviewer_rev29 <- reviewer_rev29[1:10]
+    
+  typeof_rev29 <- review_scrape29("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev29 <- typeof_rev29[1:10]
+    
+    revdate29 <- review_scrape29("span.a-size-base.a-color-secondary.review-date")
+    revdate29 <- revdate29[1:10]
+    
+
+    page_reviews_df29 <- data.frame(
+        Name = prodname29,
+        Rate = prodrate29,
+        Type_of_Review = typeof_rev29,
+        Reviewers_name = revname29,
+        Reviews = reviewer_rev29,
+        Data_of_Reviews = revdate29
+    )
+    
+   
+    reviews_df29 <- rbind(reviews_df29, page_reviews_df29)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df29, file = "prod17.csv")
+
+```
+
+
+#EIGHTEENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df30 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink30 <- paste0("https://www.amazon.co.uk/Old-Pulteney-Year-Malt-Whisky/product-reviews/B001HUA7N2/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session30 <- bow(prodlink30, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape30 <- function(selector) {
+        scrape(session30) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname30 <- review_scrape30("h1.a-size-large.a-text-ellipsis")
+    prodname30 <- rep(prodname30, 10)
+    prodname30 <- prodname30[1:10]
+    
+    prodrate30 <- review_scrape30("span.a-icon-alt")
+    prodrate30 <- prodrate30[1:10]
+    
+    revname30 <- review_scrape30("span.a-profile-name")
+    revname30 <- revname30[1:10]
+    
+  reviewer_rev30 <- review_scrape30("span.a-size-base.review-text")
+  reviewer_rev30 <- reviewer_rev30[1:10]
+    
+  typeof_rev30 <- review_scrape30("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev30 <- typeof_rev30[1:10]
+    
+    revdate30 <- review_scrape30("span.a-size-base.a-color-secondary.review-date")
+    revdate30 <- revdate30[1:10]
+    
+
+    page_reviews_df30 <- data.frame(
+        Name = prodname30,
+        Rate = prodrate30,
+        Type_of_Review = typeof_rev30,
+        Reviewers_name = revname30,
+        Reviews = reviewer_rev30,
+        Data_of_Reviews = revdate30
+    )
+    
+   
+    reviews_df30 <- rbind(reviews_df30, page_reviews_df30)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df30, file = "prod18.csv")
+
+```
+
+#NINETEENTH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df31 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink31 <- paste0("https://www.amazon.co.uk/Woodford-Reserve-Bourbon-Whiskey-70/product-reviews/B001P4YYH0/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session31 <- bow(prodlink31, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape31 <- function(selector) {
+        scrape(session31) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname31 <- review_scrape31("h1.a-size-large.a-text-ellipsis")
+    prodname31 <- rep(prodname31, 10)
+    prodname31 <- prodname31[1:10]
+    
+    prodrate31 <- review_scrape31("span.a-icon-alt")
+    prodrate31 <- prodrate31[1:10]
+    
+    revname31 <- review_scrape31("span.a-profile-name")
+    revname31 <- revname31[1:10]
+    
+  reviewer_rev31 <- review_scrape31("span.a-size-base.review-text")
+  reviewer_rev31 <- reviewer_rev31[1:10]
+    
+  typeof_rev31 <- review_scrape31("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev31 <- typeof_rev31[1:10]
+    
+    revdate31 <- review_scrape31("span.a-size-base.a-color-secondary.review-date")
+    revdate31 <- revdate31[1:10]
+    
+
+    page_reviews_df31 <- data.frame(
+        Name = prodname31,
+        Rate = prodrate31,
+        Type_of_Review = typeof_rev31,
+        Reviewers_name = revname31,
+        Reviews = reviewer_rev31,
+        Data_of_Reviews = revdate31
+    )
+    
+   
+    reviews_df31 <- rbind(reviews_df31, page_reviews_df31)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df31, file = "prod19.csv")
+
+```
+
+
+#TWENTIETH PRODUCT REVIEW(BEER AND WINES)
+```{r}
+reviews_df32 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink32 <- paste0("https://www.amazon.co.uk/Angostura-Group-Bitter-200ml/product-reviews/B07CG5XDCD/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session32 <- bow(prodlink32, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape32 <- function(selector) {
+        scrape(session32) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname32 <- review_scrape32("h1.a-size-large.a-text-ellipsis")
+    prodname32 <- rep(prodname32, 10)
+    prodname32 <- prodname32[1:10]
+    
+    prodrate32 <- review_scrape32("span.a-icon-alt")
+    prodrate32 <- prodrate32[1:10]
+    
+    revname32 <- review_scrape32("span.a-profile-name")
+    revname32 <- revname32[1:10]
+    
+  reviewer_rev32 <- review_scrape32("span.a-size-base.review-text")
+  reviewer_rev32 <- reviewer_rev32[1:10]
+    
+  typeof_rev32 <- review_scrape32("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev32 <- typeof_rev32[1:10]
+    
+    revdate32 <- review_scrape32("span.a-size-base.a-color-secondary.review-date")
+    revdate32 <- revdate32[1:10]
+    
+
+    page_reviews_df32 <- data.frame(
+        Name = prodname32,
+        Rate = prodrate32,
+        Type_of_Review = typeof_rev32,
+        Reviewers_name = revname32,
+        Reviews = reviewer_rev32,
+        Data_of_Reviews = revdate32
+    )
+    
+   
+    reviews_df32 <- rbind(reviews_df32, page_reviews_df32)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df32, file = "prod20.csv")
+
+```
+
+#TWENTY-FIRST PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df33 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink33 <- paste0("https://www.amazon.co.uk/Andrex-Gentle-Puppies-Toilet-Tissue/product-reviews/B004OCO20E/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session33 <- bow(prodlink33, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape33 <- function(selector) {
+        scrape(session33) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname33 <- review_scrape33("h1.a-size-large.a-text-ellipsis")
+    prodname33 <- rep(prodname33, 10)
+    prodname32 <- prodname33[1:10]
+    
+    prodrate33 <- review_scrape33("span.a-icon-alt")
+    prodrate33 <- prodrate33[1:10]
+    
+    revname33 <- review_scrape33("span.a-profile-name")
+    revname33 <- revname33[1:10]
+    
+  reviewer_rev33 <- review_scrape33("span.a-size-base.review-text")
+  reviewer_rev33 <- reviewer_rev33[1:10]
+    
+  typeof_rev33 <- review_scrape33("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev33 <- typeof_rev33[1:10]
+    
+    revdate33 <- review_scrape33("span.a-size-base.a-color-secondary.review-date")
+    revdate33 <- revdate33[1:10]
+    
+
+    page_reviews_df33 <- data.frame(
+        Name = prodname33,
+        Rate = prodrate33,
+        Type_of_Review = typeof_rev33,
+        Reviewers_name = revname33,
+        Reviews = reviewer_rev33,
+        Data_of_Reviews = revdate33
+    )
+    
+   
+    reviews_df33 <- rbind(reviews_df33, page_reviews_df33)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df33, file = "prod21.csv")
+
+```
+
+#TWENTY-SECOND PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df34 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink34 <- paste0("https://www.amazon.co.uk/Catsan-Hygiene-Litter-Cats-Kittens/product-reviews/B001MZV3OO/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session34 <- bow(prodlink34, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape34 <- function(selector) {
+        scrape(session34) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname34 <- review_scrape34("h1.a-size-large.a-text-ellipsis")
+    prodname34 <- rep(prodname34, 10)
+    prodname34 <- prodname34[1:10]
+    
+    prodrate34 <- review_scrape34("span.a-icon-alt")
+    prodrate34 <- prodrate34[1:10]
+    
+    revname34 <- review_scrape34("span.a-profile-name")
+    revname34 <- revname34[1:10]
+    
+  reviewer_rev34 <- review_scrape34("span.a-size-base.review-text")
+  reviewer_rev34 <- reviewer_rev34[1:10]
+    
+  typeof_rev34 <- review_scrape34("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev34 <- typeof_rev34[1:10]
+    
+    revdate34 <- review_scrape34("span.a-size-base.a-color-secondary.review-date")
+    revdate34 <- revdate34[1:10]
+    
+
+    page_reviews_df34 <- data.frame(
+        Name = prodname34,
+        Rate = prodrate34,
+        Type_of_Review = typeof_rev34,
+        Reviewers_name = revname34,
+        Reviews = reviewer_rev34,
+        Data_of_Reviews = revdate34
+    )
+    
+   
+    reviews_df34 <- rbind(reviews_df34, page_reviews_df34)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df34, file = "prod22.csv")
+
+```
+
+#TWENTY-THIRD PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df35 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink35 <- paste0("https://www.amazon.co.uk/Triple-Velvet-Jumbo-Roll-Pack/product-reviews/B08HLGKP9J/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session35 <- bow(prodlink35, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape35 <- function(selector) {
+        scrape(session35) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname35 <- review_scrape35("h1.a-size-large.a-text-ellipsis")
+    prodname35 <- rep(prodname35, 10)
+    prodname35 <- prodname35[1:10]
+    
+    prodrate35 <- review_scrape35("span.a-icon-alt")
+    prodrate35 <- prodrate35[1:10]
+    
+    revname35 <- review_scrape35("span.a-profile-name")
+    revname35 <- revname35[1:10]
+    
+  reviewer_rev35 <- review_scrape35("span.a-size-base.review-text")
+  reviewer_rev35 <- reviewer_rev35[1:10]
+    
+  typeof_rev35 <- review_scrape35("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev35 <- typeof_rev35[1:10]
+    
+    revdate35 <- review_scrape35("span.a-size-base.a-color-secondary.review-date")
+    revdate35 <- revdate35[1:10]
+    
+
+    page_reviews_df35 <- data.frame(
+        Name = prodname35,
+        Rate = prodrate35,
+        Type_of_Review = typeof_rev35,
+        Reviewers_name = revname35,
+        Reviews = reviewer_rev35,
+        Data_of_Reviews = revdate35
+    )
+    
+   
+    reviews_df35 <- rbind(reviews_df35, page_reviews_df35)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df35, file = "prod23.csv")
+
+```
+
+
+#TWENTY-FOURTH PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df36 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink36 <- paste0("https://www.amazon.co.uk/HG-186050106-Mould-Spray/product-reviews/B000IU40HQ/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session36 <- bow(prodlink36, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape36 <- function(selector) {
+        scrape(session36) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname36 <- review_scrape36("h1.a-size-large.a-text-ellipsis")
+    prodname36 <- rep(prodname36, 10)
+    prodname36 <- prodname36[1:10]
+    
+    prodrate36 <- review_scrape36("span.a-icon-alt")
+    prodrate36 <- prodrate36[1:10]
+    
+    revname36 <- review_scrape36("span.a-profile-name")
+    revname36 <- revname36[1:10]
+    
+  reviewer_rev36 <- review_scrape36("span.a-size-base.review-text")
+  reviewer_rev36 <- reviewer_rev36[1:10]
+    
+  typeof_rev36 <- review_scrape36("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev36 <- typeof_rev36[1:10]
+    
+    revdate36 <- review_scrape36("span.a-size-base.a-color-secondary.review-date")
+    revdate36 <- revdate36[1:10]
+    
+
+    page_reviews_df36 <- data.frame(
+        Name = prodname36,
+        Rate = prodrate36,
+        Type_of_Review = typeof_rev36,
+        Reviewers_name = revname36,
+        Reviews = reviewer_rev36,
+        Data_of_Reviews = revdate36
+    )
+    
+   
+    reviews_df36<- rbind(reviews_df36, page_reviews_df36)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df36, file = "prod24.csv")
+
+```
+
+#TWENTY-FIFTH PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df37 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink37 <- paste0("https://www.amazon.co.uk/Plenty-White-Kitchen-Roll-Sheets/product-reviews/B07XD2YQ8N/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session37 <- bow(prodlink32, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape37 <- function(selector) {
+        scrape(session37) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname37 <- review_scrape37("h1.a-size-large.a-text-ellipsis")
+    prodname37 <- rep(prodname37, 10)
+    prodname37 <- prodname37[1:10]
+    
+    prodrate37 <- review_scrape37("span.a-icon-alt")
+    prodrate37 <- prodrate37[1:10]
+    
+    revname37 <- review_scrape37("span.a-profile-name")
+    revname37 <- revname37[1:10]
+    
+  reviewer_rev37 <- review_scrape37("span.a-size-base.review-text")
+  reviewer_rev37 <- reviewer_rev37[1:10]
+    
+  typeof_rev37 <- review_scrape37("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev37 <- typeof_rev37[1:10]
+    
+    revdate37 <- review_scrape37("span.a-size-base.a-color-secondary.review-date")
+    revdate37 <- revdate37[1:10]
+    
+
+    page_reviews_df37 <- data.frame(
+        Name = prodname37,
+        Rate = prodrate37,
+        Type_of_Review = typeof_rev37,
+        Reviewers_name = revname37,
+        Reviews = reviewer_rev37,
+        Data_of_Reviews = revdate37
+    )
+    
+   
+    reviews_df37 <- rbind(reviews_df37, page_reviews_df37)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df37, file = "prod25.csv")
+
+```
+
+#TWENTTY-SIXTH PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df38 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink38 <- paste0("https://www.amazon.co.uk/WaterWipes-Sensitive-Newborn-Biodegradable-Unscented/product-reviews/B08MXSBRSB/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session38 <- bow(prodlink38, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape38 <- function(selector) {
+        scrape(session38) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname38 <- review_scrape38("h1.a-size-large.a-text-ellipsis")
+    prodname38 <- rep(prodname38, 10)
+    prodname38 <- prodname38[1:10]
+    
+    prodrate38 <- review_scrape38("span.a-icon-alt")
+    prodrate38 <- prodrate38[1:10]
+    
+    revname38 <- review_scrape38("span.a-profile-name")
+    revname38 <- revname38[1:10]
+    
+  reviewer_rev38 <- review_scrape38("span.a-size-base.review-text")
+  reviewer_rev38 <- reviewer_rev38[1:10]
+    
+  typeof_rev38 <- review_scrape38("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev38 <- typeof_rev38[1:10]
+    
+    revdate38 <- review_scrape38("span.a-size-base.a-color-secondary.review-date")
+    revdate38 <- revdate38[1:10]
+    
+
+    page_reviews_df38 <- data.frame(
+        Name = prodname38,
+        Rate = prodrate38,
+        Type_of_Review = typeof_rev38,
+        Reviewers_name = revname38,
+        Reviews = reviewer_rev38,
+        Data_of_Reviews = revdate38
+    )
+    
+   
+    reviews_df38 <- rbind(reviews_df38, page_reviews_df38)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df38, file = "prod26.csv")
+
+```
+
+#TWENTY-SEVENTH PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df39 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink39 <- paste0("https://www.amazon.co.uk/Earth-Rated-Unscented-Waste/product-reviews/B00BSYR7K8/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session39 <- bow(prodlink39, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape39 <- function(selector) {
+        scrape(session39) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname39 <- review_scrape39("h1.a-size-large.a-text-ellipsis")
+    prodname39 <- rep(prodname39, 10)
+    prodname39 <- prodname39[1:10]
+    
+    prodrate39 <- review_scrape39("span.a-icon-alt")
+    prodrate39 <- prodrate39[1:10]
+    
+    revname39 <- review_scrape39("span.a-profile-name")
+    revname39 <- revname39[1:10]
+    
+  reviewer_rev39 <- review_scrape39("span.a-size-base.review-text")
+  reviewer_rev39 <- reviewer_rev39[1:10]
+    
+  typeof_rev39 <- review_scrape39("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev39 <- typeof_rev39[1:10]
+    
+    revdate39 <- review_scrape39("span.a-size-base.a-color-secondary.review-date")
+    revdate39 <- revdate39[1:10]
+    
+
+    page_reviews_df39 <- data.frame(
+        Name = prodname39,
+        Rate = prodrate39,
+        Type_of_Review = typeof_rev39,
+        Reviewers_name = revname39,
+        Reviews = reviewer_rev39,
+        Data_of_Reviews = revdate39
+    )
+    
+   
+    reviews_df39 <- rbind(reviews_df39, page_reviews_df39)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df39, file = "prod27.csv")
+
+```
+
+#TWENTY-EIGHTH PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df40 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink40 <- paste0("https://www.amazon.co.uk/Dr-Beckmann-Remover-Cleaning-Applicator/product-reviews/B006ZMNWYS/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session40 <- bow(prodlink40, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape40 <- function(selector) {
+        scrape(session40) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname40 <- review_scrape40("h1.a-size-large.a-text-ellipsis")
+    prodname40 <- rep(prodname40, 10)
+    prodname40 <- prodname40[1:10]
+    
+    prodrate40 <- review_scrape40("span.a-icon-alt")
+    prodrate40 <- prodrate40[1:10]
+    
+    revname40 <- review_scrape40("span.a-profile-name")
+    revname40 <- revname40[1:10]
+    
+  reviewer_rev40 <- review_scrape40("span.a-size-base.review-text")
+  reviewer_rev40 <- reviewer_rev40[1:10]
+    
+  typeof_rev40 <- review_scrape40("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev40 <- typeof_rev40[1:10]
+    
+    revdate40 <- review_scrape40("span.a-size-base.a-color-secondary.review-date")
+    revdate40 <- revdate40[1:10]
+    
+
+    page_reviews_df40 <- data.frame(
+        Name = prodname40,
+        Rate = prodrate40,
+        Type_of_Review = typeof_rev40,
+        Reviewers_name = revname40,
+        Reviews = reviewer_rev40,
+        Data_of_Reviews = revdate40
+    )
+    
+   
+    reviews_df40 <- rbind(reviews_df40, page_reviews_df40)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df40, file = "prod28.csv")
+
+```
+
+
+#TWENTY-NINTH PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df41 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink41 <- paste0("https://www.amazon.co.uk/Regina-Blitz-Household-Towels-Total/product-reviews/B01JS6YLQK/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session41 <- bow(prodlink41, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape41 <- function(selector) {
+        scrape(session41) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname41 <- review_scrape41("h1.a-size-large.a-text-ellipsis")
+    prodname41 <- rep(prodname41, 10)
+    prodname41 <- prodname41[1:10]
+    
+    prodrate41 <- review_scrape41("span.a-icon-alt")
+    prodrate41 <- prodrate41[1:10]
+    
+    revname41 <- review_scrape41("span.a-profile-name")
+    revname41 <- revname41[1:10]
+    
+  reviewer_rev41 <- review_scrape41("span.a-size-base.review-text")
+  reviewer_rev41 <- reviewer_rev41[1:10]
+    
+  typeof_rev41 <- review_scrape41("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev41 <- typeof_rev41[1:10]
+    
+    revdate41 <- review_scrape41("span.a-size-base.a-color-secondary.review-date")
+    revdate41 <- revdate41[1:10]
+    
+
+    page_reviews_df41 <- data.frame(
+        Name = prodname41,
+        Rate = prodrate41,
+        Type_of_Review = typeof_rev41,
+        Reviewers_name = revname41,
+        Reviews = reviewer_rev41,
+        Data_of_Reviews = revdate41
+    )
+    
+   
+    reviews_df41 <- rbind(reviews_df41, page_reviews_df41)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df41, file = "prod29.csv")
+
+```
+
+
+#THIRTIETH PRODUCT REVIEW(GROCERY)
+```{r}
+reviews_df42 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink42 <- paste0("https://www.amazon.co.uk/Vitabiotics-Ultra-Vitamin-Tablets-96s/product-reviews/B003VQZC3U/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session42 <- bow(prodlink42, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape42 <- function(selector) {
+        scrape(session42) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname42 <- review_scrape42("h1.a-size-large.a-text-ellipsis")
+    prodname42 <- rep(prodname42, 10)
+    prodname42 <- prodname42[1:10]
+    
+    prodrate42 <- review_scrape42("span.a-icon-alt")
+    prodrate42 <- prodrate42[1:10]
+    
+    revname42 <- review_scrape42("span.a-profile-name")
+    revname42 <- revname42[1:10]
+    
+  reviewer_rev42 <- review_scrape42("span.a-size-base.review-text")
+  reviewer_rev42 <- reviewer_rev42[1:10]
+    
+  typeof_rev42 <- review_scrape42("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev42 <- typeof_rev42[1:10]
+    
+    revdate42 <- review_scrape42("span.a-size-base.a-color-secondary.review-date")
+    revdate42 <- revdate42[1:10]
+    
+
+    page_reviews_df42 <- data.frame(
+        Name = prodname42,
+        Rate = prodrate42,
+        Type_of_Review = typeof_rev42,
+        Reviewers_name = revname42,
+        Reviews = reviewer_rev42,
+        Data_of_Reviews = revdate42
+    )
+    
+   
+    reviews_df42 <- rbind(reviews_df42, page_reviews_df42)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df42, file = "prod30.csv")
+
+```
+
+
+#THIRTY-FIRST PRODUCT REVIEW(CAMPING EQUIPEMENTS)
+```{r}
+reviews_df43 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink43 <- paste0("https://www.amazon.co.uk/aZengear-Emergency-Survival-Poncho-Waterproof-Hands-Free-Hood/product-reviews/B0C2WVZRX4/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session43 <- bow(prodlink43, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape43 <- function(selector) {
+        scrape(session43) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname43 <- review_scrape43("h1.a-size-large.a-text-ellipsis")
+    prodname43 <- rep(prodname43, 10)
+    prodname43 <- prodname43[1:10]
+    
+    prodrate43 <- review_scrape43("span.a-icon-alt")
+    prodrate43 <- prodrate43[1:10]
+    
+    revname43 <- review_scrape43("span.a-profile-name")
+    revname43 <- revname43[1:10]
+    
+  reviewer_rev43 <- review_scrape43("span.a-size-base.review-text")
+  reviewer_rev43 <- reviewer_rev43[1:10]
+    
+  typeof_rev43 <- review_scrape43("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev43 <- typeof_rev43[1:10]
+    
+    revdate43 <- review_scrape43("span.a-size-base.a-color-secondary.review-date")
+    revdate43 <- revdate43[1:10]
+    
+
+    page_reviews_df43 <- data.frame(
+        Name = prodname43,
+        Rate = prodrate43,
+        Type_of_Review = typeof_rev43,
+        Reviewers_name = revname43,
+        Reviews = reviewer_rev43,
+        Data_of_Reviews = revdate43
+    )
+    
+   
+    reviews_df43 <- rbind(reviews_df43, page_reviews_df43)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df40, file = "prod31.csv")
+
+```
+
+#THIRY-SECOND PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df44 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink44 <- paste0("https://www.amazon.co.uk/Reliance-Medical-Premium-First-90-Piece/product-reviews/B07FRPXF44/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session44 <- bow(prodlink44, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape44 <- function(selector) {
+        scrape(session44) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname44 <- review_scrape44("h1.a-size-large.a-text-ellipsis")
+    prodname44 <- rep(prodname44, 10)
+    prodname44 <- prodname44[1:10]
+    
+    prodrate44 <- review_scrape44("span.a-icon-alt")
+    prodrate44 <- prodrate44[1:10]
+    
+    revname44 <- review_scrape44("span.a-profile-name")
+    revname44 <- revname44[1:10]
+    
+  reviewer_rev44 <- review_scrape44("span.a-size-base.review-text")
+  reviewer_rev44 <- reviewer_rev44[1:10]
+    
+  typeof_rev44 <- review_scrape44("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev44 <- typeof_rev44[1:10]
+    
+    revdate44 <- review_scrape44("span.a-size-base.a-color-secondary.review-date")
+    revdate44 <- revdate44[1:10]
+    
+
+    page_reviews_df44 <- data.frame(
+        Name = prodname44,
+        Rate = prodrate44,
+        Type_of_Review = typeof_rev44,
+        Reviewers_name = revname44,
+        Reviews = reviewer_rev44,
+        Data_of_Reviews = revdate44
+    )
+    
+   
+    reviews_df44 <- rbind(reviews_df44, page_reviews_df44)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df44, file = "prod32.csv")
+
+```
+
+
+#THIRTY-THIRD PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df45 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink45 <- paste0("https://www.amazon.co.uk/Lewis-Plast-Premium-Piece-First-Aid/product-reviews/B09B1GFM3R/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session45 <- bow(prodlink45, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape45 <- function(selector) {
+        scrape(session45) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname45 <- review_scrape45("h1.a-size-large.a-text-ellipsis")
+    prodname45 <- rep(prodname45, 10)
+    prodname45 <- prodname45[1:10]
+    
+    prodrate45 <- review_scrape45("span.a-icon-alt")
+    prodrate45 <- prodrate45[1:10]
+    
+    revname45 <- review_scrape45("span.a-profile-name")
+    revname45 <- revname45[1:10]
+    
+  reviewer_rev45 <- review_scrape45("span.a-size-base.review-text")
+  reviewer_rev45 <- reviewer_rev45[1:10]
+    
+  typeof_rev45 <- review_scrape45("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev45 <- typeof_rev45[1:10]
+    
+    revdate45 <- review_scrape45("span.a-size-base.a-color-secondary.review-date")
+    revdate45 <- revdate45[1:10]
+    
+
+    page_reviews_df45 <- data.frame(
+        Name = prodname45,
+        Rate = prodrate45,
+        Type_of_Review = typeof_rev45,
+        Reviewers_name = revname45,
+        Reviews = reviewer_rev45,
+        Data_of_Reviews = revdate45
+    )
+    
+   
+    reviews_df45 <- rbind(reviews_df45, page_reviews_df45)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df45, file = "prod33.csv")
+
+```
+
+
+#THIRTY-FOURTH PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df46 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink46 <- paste0("https://www.amazon.co.uk/Wilkinson-Sword-Hydro-Protection-Advanced/product-reviews/B092DHMW1C/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session46 <- bow(prodlink40, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape46 <- function(selector) {
+        scrape(session46) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname46 <- review_scrape46("h1.a-size-large.a-text-ellipsis")
+    prodname46 <- rep(prodname46, 10)
+    prodname46 <- prodname46[1:10]
+    
+    prodrate46 <- review_scrape46("span.a-icon-alt")
+    prodrate46 <- prodrate46[1:10]
+    
+    revname46 <- review_scrape46("span.a-profile-name")
+    revname46 <- revname46[1:10]
+    
+  reviewer_rev46 <- review_scrape46("span.a-size-base.review-text")
+  reviewer_rev46 <- reviewer_rev46[1:10]
+    
+  typeof_rev46 <- review_scrape46("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev46 <- typeof_rev46[1:10]
+    
+    revdate46 <- review_scrape46("span.a-size-base.a-color-secondary.review-date")
+    revdate46 <- revdate46[1:10]
+    
+
+    page_reviews_df46 <- data.frame(
+        Name = prodname46,
+        Rate = prodrate46,
+        Type_of_Review = typeof_rev46,
+        Reviewers_name = revname46,
+        Reviews = reviewer_rev46,
+        Data_of_Reviews = revdate46
+    )
+    
+   
+    reviews_df46 <- rbind(reviews_df46, page_reviews_df46)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df46, file = "prod34.csv")
+
+```
+
+
+#THIRT-FIFTH PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df47 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink47 <- paste0("https://www.amazon.co.uk/aZengear-Survival-Bracelet-Paracord-Adjustable-Wrist-Size-Scout-Gift/product-reviews/B086XH9XYJ/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session47 <- bow(prodlink47, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape47 <- function(selector) {
+        scrape(session47) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname47 <- review_scrape47("h1.a-size-large.a-text-ellipsis")
+    prodname47 <- rep(prodname47, 10)
+    prodname47 <- prodname47[1:10]
+    
+    prodrate47 <- review_scrape47("span.a-icon-alt")
+    prodrate47 <- prodrate47[1:10]
+    
+    revname47 <- review_scrape47("span.a-profile-name")
+    revname47 <- revname47[1:10]
+    
+  reviewer_rev47 <- review_scrape47("span.a-size-base.review-text")
+  reviewer_rev47 <- reviewer_rev47[1:10]
+    
+  typeof_rev47 <- review_scrape47("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev47 <- typeof_rev47[1:10]
+    
+    revdate47 <- review_scrape47("span.a-size-base.a-color-secondary.review-date")
+    revdate47 <- revdate47[1:10]
+    
+
+    page_reviews_df47 <- data.frame(
+        Name = prodname47,
+        Rate = prodrate47,
+        Type_of_Review = typeof_rev47,
+        Reviewers_name = revname47,
+        Reviews = reviewer_rev47,
+        Data_of_Reviews = revdate47
+    )
+    
+   
+    reviews_df47 <- rbind(reviews_df47, page_reviews_df47)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df47, file = "prod35.csv")
+
+```
+
+
+#THIRTY-SIXTH PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df48 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink48 <- paste0("https://www.amazon.co.uk/Lifesystems-Pocket-First-Aid-Kit/product-reviews/B000T9LRUY/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session48 <- bow(prodlink48, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape48 <- function(selector) {
+        scrape(session48) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname48 <- review_scrape48("h1.a-size-large.a-text-ellipsis")
+    prodname48 <- rep(prodname48, 10)
+    prodname48 <- prodname48[1:10]
+    
+    prodrate48 <- review_scrape48("span.a-icon-alt")
+    prodrate48 <- prodrate48[1:10]
+    
+    revname48 <- review_scrape48("span.a-profile-name")
+    revname48 <- revname48[1:10]
+    
+  reviewer_rev48 <- review_scrape48("span.a-size-base.review-text")
+  reviewer_rev48 <- reviewer_rev48[1:10]
+    
+  typeof_rev48 <- review_scrape48("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev48 <- typeof_rev48[1:10]
+    
+    revdate48 <- review_scrape48("span.a-size-base.a-color-secondary.review-date")
+    revdate48 <- revdate48[1:10]
+    
+
+    page_reviews_df48 <- data.frame(
+        Name = prodname48,
+        Rate = prodrate48,
+        Type_of_Review = typeof_rev48,
+        Reviewers_name = revname48,
+        Reviews = reviewer_rev48,
+        Data_of_Reviews = revdate48
+    )
+    
+   
+    reviews_df48 <- rbind(reviews_df48, page_reviews_df48)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df48, file = "prod36.csv")
+
+```
+
+
+#THIRTY-SEVENTH PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df49 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink49 <- paste0("https://www.amazon.co.uk/KNIPEX-82-200-Multi-Component-atramentized/product-reviews/B09G17WYMN/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session49 <- bow(prodlink49, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape49 <- function(selector) {
+        scrape(session49) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname49 <- review_scrape49("h1.a-size-large.a-text-ellipsis")
+    prodname49 <- rep(prodname49, 10)
+    prodname49 <- prodname49[1:10]
+    
+    prodrate49 <- review_scrape49("span.a-icon-alt")
+    prodrate49 <- prodrate49[1:10]
+    
+    revname49 <- review_scrape49("span.a-profile-name")
+    revname49 <- revname49[1:10]
+    
+  reviewer_rev49 <- review_scrape49("span.a-size-base.review-text")
+  reviewer_rev49 <- reviewer_rev49[1:10]
+    
+  typeof_rev49 <- review_scrape49("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev49 <- typeof_rev49[1:10]
+    
+    revdate49 <- review_scrape49("span.a-size-base.a-color-secondary.review-date")
+    revdate49 <- revdate49[1:10]
+    
+
+    page_reviews_df49 <- data.frame(
+        Name = prodname49,
+        Rate = prodrate49,
+        Type_of_Review = typeof_rev49,
+        Reviewers_name = revname49,
+        Reviews = reviewer_rev49,
+        Data_of_Reviews = revdate49
+    )
+    
+   
+    reviews_df49 <- rbind(reviews_df49, page_reviews_df49)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df49, file = "prod37.csv")
+
+```
+
+
+#THIRTY-EIGHTH PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df50 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink50 <- paste0("https://www.amazon.co.uk/Petzl-E99ACA-Core-Rechargeable-Battery/product-reviews/B01L328L72/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session50 <- bow(prodlink50, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape50 <- function(selector) {
+        scrape(session50) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname50 <- review_scrape50("h1.a-size-large.a-text-ellipsis")
+    prodname50 <- rep(prodname50, 10)
+    prodname50 <- prodname50[1:10]
+    
+    prodrate50 <- review_scrape50("span.a-icon-alt")
+    prodrate50 <- prodrate50[1:10]
+    
+    revname50 <- review_scrape50("span.a-profile-name")
+    revname50 <- revname50[1:10]
+    
+  reviewer_rev50 <- review_scrape50("span.a-size-base.review-text")
+  reviewer_rev50 <- reviewer_rev50[1:10]
+    
+  typeof_rev50 <- review_scrape50("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev50 <- typeof_rev50[1:10]
+    
+    revdate50 <- review_scrape50("span.a-size-base.a-color-secondary.review-date")
+    revdate50 <- revdate50[1:10]
+    
+
+    page_reviews_df50 <- data.frame(
+        Name = prodname50,
+        Rate = prodrate50,
+        Type_of_Review = typeof_rev50,
+        Reviewers_name = revname50,
+        Reviews = reviewer_rev50,
+        Data_of_Reviews = revdate50
+    )
+    
+   
+    reviews_df50 <- rbind(reviews_df50, page_reviews_df50)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df50, file = "prod38.csv")
+
+```
+
+
+#THIRTY-NINTH PRODUCT REVIEW(CAMPING EQUIPMENTS)
+```{r}
+reviews_df51 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink51 <- paste0("https://www.amazon.co.uk/Purdy-14A900800-Multi-Tool/product-reviews/B07357SQRR/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session51 <- bow(prodlink51, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape51 <- function(selector) {
+        scrape(session51) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname51 <- review_scrape51("h1.a-size-large.a-text-ellipsis")
+    prodname51 <- rep(prodname51, 10)
+    prodname51 <- prodname51[1:10]
+    
+    prodrate51 <- review_scrape51("span.a-icon-alt")
+    prodrate51 <- prodrate51[1:10]
+    
+    revname51 <- review_scrape51("span.a-profile-name")
+    revname51 <- revname51[1:10]
+    
+  reviewer_rev51 <- review_scrape51("span.a-size-base.review-text")
+  reviewer_rev51 <- reviewer_rev51[1:10]
+    
+  typeof_rev51 <- review_scrape51("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev51 <- typeof_rev51[1:10]
+    
+    revdate51 <- review_scrape51("span.a-size-base.a-color-secondary.review-date")
+    revdate51 <- revdate51[1:10]
+    
+
+    page_reviews_df51 <- data.frame(
+        Name = prodname51,
+        Rate = prodrate51,
+        Type_of_Review = typeof_rev51,
+        Reviewers_name = revname51,
+        Reviews = reviewer_rev51,
+        Data_of_Reviews = revdate51
+    )
+    
+   
+    reviews_df51 <- rbind(reviews_df51, page_reviews_df51)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df51, file = "prod39.csv")
+
+```
+
+#FORTIETH PRODUCT REVIEWS(CAMPING EQUIPMENTS)
+```{r}
+reviews_df52 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink52 <- paste0("https://www.amazon.co.uk/Victorinox-Pocket-Knife-Ceramic-Sharpener/product-reviews/B000AR7AKG/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session52 <- bow(prodlink52, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape52 <- function(selector) {
+        scrape(session52) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname52 <- review_scrape52("h1.a-size-large.a-text-ellipsis")
+    prodname52 <- rep(prodname52, 10)
+    prodname52 <- prodname52[1:10]
+    
+    prodrate52 <- review_scrape52("span.a-icon-alt")
+    prodrate52 <- prodrate52[1:10]
+    
+    revname52 <- review_scrape52("span.a-profile-name")
+    revname52 <- revname52[1:10]
+    
+  reviewer_rev52 <- review_scrape52("span.a-size-base.review-text")
+  reviewer_rev52 <- reviewer_rev52[1:10]
+    
+  typeof_rev52 <- review_scrape52("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev52 <- typeof_rev52[1:10]
+    
+    revdate52 <- review_scrape52("span.a-size-base.a-color-secondary.review-date")
+    revdate52 <- revdate52[1:10]
+    
+
+    page_reviews_df52 <- data.frame(
+        Name = prodname52,
+        Rate = prodrate52,
+        Type_of_Review = typeof_rev52,
+        Reviewers_name = revname52,
+        Reviews = reviewer_rev52,
+        Data_of_Reviews = revdate52
+    )
+    
+   
+    reviews_df52 <- rbind(reviews_df52, page_reviews_df52)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df52, file = "prod40.csv")
+
+```
+
+
+#FORTY-FIRST PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df53 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink53 <- paste0("https://www.amazon.co.uk/Throw-Burrito-Dodgeball-Exploding-Kittens/product-reviews/B07TS96J7Q/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session53 <- bow(prodlink53, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape53 <- function(selector) {
+        scrape(session53) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname53 <- review_scrape53("h1.a-size-large.a-text-ellipsis")
+    prodname53 <- rep(prodname53, 10)
+    prodname53 <- prodname53[1:10]
+    
+    prodrate53 <- review_scrape53("span.a-icon-alt")
+    prodrate53 <- prodrate53[1:10]
+    
+    revname53 <- review_scrape53("span.a-profile-name")
+    revname53 <- revname53[1:10]
+    
+  reviewer_rev53 <- review_scrape53("span.a-size-base.review-text")
+  reviewer_rev53 <- reviewer_rev53[1:10]
+    
+  typeof_rev53 <- review_scrape53("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev53 <- typeof_rev53[1:10]
+    
+    revdate53 <- review_scrape53("span.a-size-base.a-color-secondary.review-date")
+    revdate53 <- revdate53[1:10]
+    
+
+    page_reviews_df53 <- data.frame(
+        Name = prodname53,
+        Rate = prodrate53,
+        Type_of_Review = typeof_rev53,
+        Reviewers_name = revname53,
+        Reviews = reviewer_rev53,
+        Data_of_Reviews = revdate53
+    )
+    
+   
+    reviews_df53 <- rbind(reviews_df53, page_reviews_df53)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df53, file = "prod41.csv")
+
+```
+
+#FORTY-SECOND PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df54 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink54 <- paste0("https://www.amazon.co.uk/Exploding-Kittens-Wombat-Games-Adults/product-reviews/B09R41QXS6/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session54 <- bow(prodlink54, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape54 <- function(selector) {
+        scrape(session54) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname54 <- review_scrape54("h1.a-size-large.a-text-ellipsis")
+    prodname54 <- rep(prodname54, 10)
+    prodname54 <- prodname54[1:10]
+    
+    prodrate54 <- review_scrape54("span.a-icon-alt")
+    prodrate54 <- prodrate54[1:10]
+    
+    revname54 <- review_scrape54("span.a-profile-name")
+    revname54 <- revname54[1:10]
+    
+  reviewer_rev54 <- review_scrape54("span.a-size-base.review-text")
+  reviewer_rev54 <- reviewer_rev54[1:10]
+    
+  typeof_rev54 <- review_scrape54("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev54 <- typeof_rev54[1:10]
+    
+    revdate54 <- review_scrape54("span.a-size-base.a-color-secondary.review-date")
+    revdate54 <- revdate54[1:10]
+    
+
+    page_reviews_df54 <- data.frame(
+        Name = prodname54,
+        Rate = prodrate54,
+        Type_of_Review = typeof_rev54,
+        Reviewers_name = revname54,
+        Reviews = reviewer_rev54,
+        Data_of_Reviews = revdate54
+    )
+    
+   
+    reviews_df54 <- rbind(reviews_df54, page_reviews_df54)
+  
+    Sys.sleep(3)
+}
+write.csv(reviews_df54, file = "prod42.csv")
+
+```
+
+
+#FORTY-THIRD PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df55 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink55 <- paste0("https://www.amazon.co.uk/UNO-W2087-Card-Game-European/product-reviews/B005I5M2F8/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session55 <- bow(prodlink55, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape55 <- function(selector) {
+        scrape(session55) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname55 <- review_scrape55("h1.a-size-large.a-text-ellipsis")
+    prodname55 <- rep(prodname55, 10)
+    prodname55 <- prodname55[1:10]
+    
+    prodrate55 <- review_scrape55("span.a-icon-alt")
+    prodrate55 <- prodrate55[1:10]
+    
+    revname55 <- review_scrape55("span.a-profile-name")
+    revname55 <- revname55[1:10]
+    
+  reviewer_rev55 <- review_scrape55("span.a-size-base.review-text")
+  reviewer_rev55 <- reviewer_rev55[1:10]
+    
+  typeof_rev55 <- review_scrape55("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev55 <- typeof_rev55[1:10]
+    
+    revdate55 <- review_scrape55("span.a-size-base.a-color-secondary.review-date")
+    revdate55 <- revdate55[1:10]
+    
+
+    page_reviews_df55 <- data.frame(
+        Name = prodname55,
+        Rate = prodrate55,
+        Type_of_Review = typeof_rev55,
+        Reviewers_name = revname55,
+        Reviews = reviewer_rev55,
+        Data_of_Reviews = revdate55
+    )
+    
+   
+    reviews_df55 <- rbind(reviews_df55, page_reviews_df55)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df55, file = "prod43.csv")
+
+```
+
+#FORTY-FOURTH PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df56 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink56 <- paste0("https://www.amazon.co.uk/Ginger-Fox-Calm-Your-Tits/product-reviews/B09FY6FTSW/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session56 <- bow(prodlink56, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape56 <- function(selector) {
+        scrape(session56) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname56 <- review_scrape56("h1.a-size-large.a-text-ellipsis")
+    prodname56 <- rep(prodname56, 10)
+    prodname56 <- prodname56[1:10]
+    
+    prodrate56 <- review_scrape56("span.a-icon-alt")
+    prodrate56 <- prodrate56[1:10]
+    
+    revname56 <- review_scrape56("span.a-profile-name")
+    revname56 <- revname56[1:10]
+    
+  reviewer_rev56 <- review_scrape56("span.a-size-base.review-text")
+  reviewer_rev56 <- reviewer_rev56[1:10]
+    
+  typeof_rev56 <- review_scrape56("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev56 <- typeof_rev56[1:10]
+    
+    revdate56 <- review_scrape56("span.a-size-base.a-color-secondary.review-date")
+    revdate56 <- revdate56[1:10]
+    
+
+    page_reviews_df56 <- data.frame(
+        Name = prodname56,
+        Rate = prodrate56,
+        Type_of_Review = typeof_rev56,
+        Reviewers_name = revname56,
+        Reviews = reviewer_rev56,
+        Data_of_Reviews = revdate56
+    )
+    
+   
+    reviews_df56 <- rbind(reviews_df56, page_reviews_df56)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df56, file = "prod44.csv")
+
+```
+
+#FORTY-FIFTH PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df57 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink57 <- paste0("https://www.amazon.co.uk/Classic-Blue-Twin-Waddingtons-Number/product-reviews/B07CT5P42N/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session57 <- bow(prodlink57, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape57 <- function(selector) {
+        scrape(session57) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname57 <- review_scrape57("h1.a-size-large.a-text-ellipsis")
+    prodname57 <- rep(prodname57, 10)
+    prodname57 <- prodname57[1:10]
+    
+    prodrate57 <- review_scrape57("span.a-icon-alt")
+    prodrate57 <- prodrate57[1:10]
+    
+    revname57 <- review_scrape57("span.a-profile-name")
+    revname57 <- revname57[1:10]
+    
+  reviewer_rev57 <- review_scrape57("span.a-size-base.review-text")
+  reviewer_rev57 <- reviewer_rev57[1:10]
+    
+  typeof_rev57 <- review_scrape57("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev57 <- typeof_rev57[1:10]
+    
+    revdate57 <- review_scrape57("span.a-size-base.a-color-secondary.review-date")
+    revdate57 <- revdate57[1:10]
+    
+
+    page_reviews_df57 <- data.frame(
+        Name = prodname57,
+        Rate = prodrate57,
+        Type_of_Review = typeof_rev57,
+        Reviewers_name = revname57,
+        Reviews = reviewer_rev57,
+        Data_of_Reviews = revdate57
+    )
+    
+   
+    reviews_df57 <- rbind(reviews_df57, page_reviews_df57)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df57, file = "prod45.csv")
+
+```
+
+#FORTY-SIXTH PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df58 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink58 <- paste0("https://www.amazon.co.uk/Cards-Family-Adult-Night-Players/product-reviews/B09MSB4X2G/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session58 <- bow(prodlink58, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape58 <- function(selector) {
+        scrape(session58) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname58 <- review_scrape58("h1.a-size-large.a-text-ellipsis")
+    prodname58 <- rep(prodname58, 10)
+    prodname58 <- prodname58[1:10]
+    
+    prodrate58 <- review_scrape58("span.a-icon-alt")
+    prodrate58 <- prodrate58[1:10]
+    
+    revname58 <- review_scrape58("span.a-profile-name")
+    revname58 <- revname58[1:10]
+    
+  reviewer_rev58 <- review_scrape58("span.a-size-base.review-text")
+  reviewer_rev58 <- reviewer_rev58[1:10]
+    
+  typeof_rev58 <- review_scrape58("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev58 <- typeof_rev58[1:10]
+    
+    revdate58 <- review_scrape58("span.a-size-base.a-color-secondary.review-date")
+    revdate58 <- revdate58[1:10]
+    
+
+    page_reviews_df58 <- data.frame(
+        Name = prodname58,
+        Rate = prodrate58,
+        Type_of_Review = typeof_rev58,
+        Reviewers_name = revname58,
+        Reviews = reviewer_rev58,
+        Data_of_Reviews = revdate58
+    )
+    
+   
+    reviews_df58 <- rbind(reviews_df58, page_reviews_df58)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df58, file = "prod46.csv")
+
+```
+
+#FORTY-SEVENTH PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df59 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink59 <- paste0("https://www.amazon.co.uk/Family-Adults-Double-sided-Special-Storage/product-reviews/B07JKB2H59/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session59 <- bow(prodlink59, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape59 <- function(selector) {
+        scrape(session59) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname59 <- review_scrape59("h1.a-size-large.a-text-ellipsis")
+    prodname59 <- rep(prodname59, 10)
+    prodname59 <- prodname59[1:10]
+    
+    prodrate59 <- review_scrape59("span.a-icon-alt")
+    prodrate59 <- prodrate59[1:10]
+    
+    revname59 <- review_scrape59("span.a-profile-name")
+    revname59 <- revname59[1:10]
+    
+  reviewer_rev59 <- review_scrape59("span.a-size-base.review-text")
+  reviewer_rev59 <- reviewer_rev59[1:10]
+    
+  typeof_rev59 <- review_scrape59("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev59 <- typeof_rev59[1:10]
+    
+    revdate59 <- review_scrape59("span.a-size-base.a-color-secondary.review-date")
+    revdate59 <- revdate59[1:10]
+    
+
+    page_reviews_df59 <- data.frame(
+        Name = prodname59,
+        Rate = prodrate59,
+        Type_of_Review = typeof_rev59,
+        Reviewers_name = revname59,
+        Reviews = reviewer_rev59,
+        Data_of_Reviews = revdate59
+    )
+    
+   
+    reviews_df59 <- rbind(reviews_df59, page_reviews_df59)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df59, file = "prod47.csv")
+
+```
+
+#FORTY-EIGHTH PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df60 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink60 <- paste0("https://www.amazon.co.uk/Blue-Orange-BLUTACO-Cheese-Colours/product-reviews/B088HRRB59/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session60 <- bow(prodlink60, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape60 <- function(selector) {
+        scrape(session60) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname60 <- review_scrape60("h1.a-size-large.a-text-ellipsis")
+    prodname60 <- rep(prodname60, 10)
+    prodname60 <- prodname60[1:10]
+    
+    prodrate60 <- review_scrape60("span.a-icon-alt")
+    prodrate60 <- prodrate60[1:10]
+    
+    revname60 <- review_scrape60("span.a-profile-name")
+    revname60 <- revname60[1:10]
+    
+  reviewer_rev60 <- review_scrape60("span.a-size-base.review-text")
+  reviewer_rev60 <- reviewer_rev60[1:10]
+    
+  typeof_rev60 <- review_scrape60("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev60 <- typeof_rev60[1:10]
+    
+    revdate60 <- review_scrape60("span.a-size-base.a-color-secondary.review-date")
+    revdate60 <- revdate60[1:10]
+    
+
+    page_reviews_df60 <- data.frame(
+        Name = prodname60,
+        Rate = prodrate60,
+        Type_of_Review = typeof_rev60,
+        Reviewers_name = revname60,
+        Reviews = reviewer_rev60,
+        Data_of_Reviews = revdate60
+    )
+    
+   
+    reviews_df60 <- rbind(reviews_df60, page_reviews_df60)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df60, file = "prod48.csv")
+
+```
+
+
+#FORTY-NINTH PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df61 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink61 <- paste0("https://www.amazon.co.uk/Cheatwell-Games-Fart-Card-Game/product-reviews/B0168FKRS0/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session61 <- bow(prodlink61, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape61 <- function(selector) {
+        scrape(session61) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname61 <- review_scrape61("h1.a-size-large.a-text-ellipsis")
+    prodname61 <- rep(prodname61, 10)
+    prodname61 <- prodname61[1:10]
+    
+    prodrate61 <- review_scrape61("span.a-icon-alt")
+    prodrate61 <- prodrate61[1:10]
+    
+    revname61 <- review_scrape61("span.a-profile-name")
+    revname61 <- revname61[1:10]
+    
+  reviewer_rev61 <- review_scrape61("span.a-size-base.review-text")
+  reviewer_rev61 <- reviewer_rev61[1:10]
+    
+  typeof_rev61 <- review_scrape61("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev61 <- typeof_rev61[1:10]
+    
+    revdate61 <- review_scrape61("span.a-size-base.a-color-secondary.review-date")
+    revdate61 <- revdate61[1:10]
+    
+
+    page_reviews_df61 <- data.frame(
+        Name = prodname61,
+        Rate = prodrate61,
+        Type_of_Review = typeof_rev61,
+        Reviewers_name = revname61,
+        Reviews = reviewer_rev61,
+        Data_of_Reviews = revdate61
+    )
+    
+   
+    reviews_df61 <- rbind(reviews_df61, page_reviews_df61)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df61, file = "prod49.csv")
+
+```
+
+
+#FIFTIETH PRODUCT REVIEW(CARD GAMES)
+```{r}
+reviews_df62 <- data.frame()
+
+
+for (page in 1:5) {
+   
+    prodlink62 <- paste0("https://www.amazon.co.uk/Based-Viral-Games-Adults-Families/product-reviews/B0BRT572WH/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews", page)
+    
+   
+session62 <- bow(prodlink62, user_agent = "For Educational Purposes")
+    
+    
+    review_scrape62 <- function(selector) {
+        scrape(session62) %>%
+            html_nodes(selector) %>%
+            html_text(trim = TRUE)
+    }
+    
+ 
+    prodname62 <- review_scrape62("h1.a-size-large.a-text-ellipsis")
+    prodname62 <- rep(prodname62, 10)
+    prodname62 <- prodname62[1:10]
+    
+    prodrate62 <- review_scrape62("span.a-icon-alt")
+    prodrate62 <- prodrate62[1:10]
+    
+    revname62 <- review_scrape62("span.a-profile-name")
+    revname62 <- revname62[1:10]
+    
+  reviewer_rev62 <- review_scrape62("span.a-size-base.review-text")
+  reviewer_rev62 <- reviewer_rev62[1:10]
+    
+  typeof_rev62 <- review_scrape62("span.a-size-mini.a-color-state.a-text-bold")
+    typeof_rev62 <- typeof_rev62[1:10]
+    
+    revdate62 <- review_scrape62("span.a-size-base.a-color-secondary.review-date")
+    revdate62 <- revdate62[1:10]
+    
+
+    page_reviews_df62 <- data.frame(
+        Name = prodname62,
+        Rate = prodrate62,
+        Type_of_Review = typeof_rev62,
+        Reviewers_name = revname62,
+        Reviews = reviewer_rev62,
+        Data_of_Reviews = revdate62
+    )
+    
+   
+    reviews_df62 <- rbind(reviews_df62, page_reviews_df62)
+    
+    Sys.sleep(3)
+}
+write.csv(reviews_df62, file = "prod50.csv")
+
+```
+
+```{R}
+Combined_50_prod <- rbind(prodrev1,prodrev2,prodrev3,reviews_df16,reviews_df17,reviews_df18,reviews_df19,reviews_df20,reviews_df21,reviews_df22,reviews_df23,reviews_df24,reviews_df25,reviews_df26,reviews_df27,reviews_df28,reviews_df29,reviews_df30,reviews_df31,reviews_df32,reviews_df33,reviews_df34,reviews_df35,reviews_df36,reviews_df37,reviews_df38,reviews_df39,reviews_df40,reviews_df41,reviews_df42,reviews_df43,reviews_df44,reviews_df45,reviews_df46,reviews_df47,reviews_df48,reviews_df49,reviews_df50,reviews_df51,reviews_df52,reviews_df53,reviews_df54,reviews_df55,reviews_df56,reviews_df57,reviews_df58,reviews_df59,reviews_df60,reviews_df61,reviews_df62)
+
+write.csv(Combined_50_prod, file = "finalreviews.csv")
+```
