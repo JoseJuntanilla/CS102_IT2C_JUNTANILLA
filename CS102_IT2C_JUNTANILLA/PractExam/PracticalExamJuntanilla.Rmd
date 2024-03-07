@@ -55,14 +55,14 @@ message that was displayed.
 
 B. Load the exampleFile.txt
 1. Read the complete file using readLines.
-```{r}(error=TRUE)
+```{r}
 file_cont <- readLines("exampleFile.txt")
 print(file_cont)
 ```
 
 2. Separate the vector of lines into a vector containing comments and a vector
 containing the data. Hint: use grepl.
-```{r}(error=TRUE)
+```{r}
 (com <- file_cont[grepl("//", file_cont)])
 
 
@@ -71,7 +71,7 @@ containing the data. Hint: use grepl.
 ```
 3. Extract the date from the first comment line and display on the screen “It was created
 data.”
-```{r}(error=TRUE)
+```{r}
 (date <- gsub(".*Created : ", "", com[1]))
 
 paste0("It was created ", date)
@@ -81,13 +81,13 @@ paste0("It was created ", date)
 4. Read the data into a matrix as follows.
 a. Split the character vectors in the vector containing data lines by semicolon (;)
 using strsplit.
-```{r}(error=TRUE)
+```{r}
 (splitLines <- strsplit(data, ";"))
 ```
 
 b. Find the maximum number of fields retrieved by split. Append rows that are
 shorter with NA's.
-```{r}(error=TRUE)
+```{r}
 
 (veclength <- sapply(splitLines, length))
 
