@@ -1,0 +1,98 @@
+---
+title: "CS102_BSIT2C_JUNTANILLA_PRAC"
+author: "JOSE ROLAND JUNTANILLA"
+date: "2024-03-06"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A. Load the built-in warpbreaks dataset.
+```{r}
+structure(warpbreaks)
+```
+
+1. Find out, in a single command, which columns of warpbreaks are either numeric or
+integer. What are the data types of each column?
+```{r}
+df_datatype <- sapply(warpbreaks, function(x) typeof(x))
+df_datatype
+#The data types of each column is double,integer,interger.
+```
+
+
+2. How many observations does it have?
+```{r}
+(obs_df <- nrow(warpbreaks))
+
+# The dataframe warpbreaks has a 54 Observations.
+```
+
+
+3. Is numeric a natural data type for the columns which are stored as such? Convert to
+integer when necessary.
+```{r}
+
+is.integer(warpbreaks$breaks) 
+
+warpbreaks$wool <- as.integer(warpbreaks$wool) 
+warpbreaks$tension <- as.integer(warpbreaks$tension)
+warpbreaks
+
+```
+
+4. Error messages in R sometimes report the underlying type of an object rather than the
+user-level class. Derive from the following code and error message what the
+underlying type. Explain what is the error all about. Do not just copy the error
+message that was displayed.
+```{r}
+
+```
+
+B. Load the exampleFile.txt
+1. Read the complete file using readLines.
+```{r}(error=TRUE)
+file_cont <- readLines("exampleFile.txt")
+print(file_cont)
+```
+
+2. Separate the vector of lines into a vector containing comments and a vector
+containing the data. Hint: use grepl.
+```{r}(error=TRUE)
+(com <- file_cont[grepl("//", file_cont)])
+
+
+(data <- file_cont[!grepl("//", file_cont)])
+
+```
+3. Extract the date from the first comment line and display on the screen “It was created
+data.”
+```{r}(error=TRUE)
+(date <- gsub(".*Created : ", "", com[1]))
+
+paste0("It was created ", date)
+
+```
+
+4. Read the data into a matrix as follows.
+a. Split the character vectors in the vector containing data lines by semicolon (;)
+using strsplit.
+```{r}(error=TRUE)
+(splitLines <- strsplit(data, ";"))
+```
+
+b. Find the maximum number of fields retrieved by split. Append rows that are
+shorter with NA's.
+```{r}(error=TRUE)
+
+(veclength <- sapply(splitLines, length))
+
+(Fieldfmax <- max(veclength))
+
+(splitLines <- lapply(splitLines, function(row) c(row, rep(NA, Fieldfmax - length(row)))))
+
+```
