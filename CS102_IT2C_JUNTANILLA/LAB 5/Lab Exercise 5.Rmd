@@ -2,7 +2,9 @@
 title: "CS102_IT2C_JUNTANILLA_LAB5"
 author: "Jose Roland Juntanilla"
 date: "2024-03-25"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #LAB 4 DATASET CLEANING(ARXIV)
 
-```{r}
+```{r, warning=FALSE}
 
 library(readr)
 library(stringr)
@@ -40,7 +42,7 @@ write.csv(cleanarxiv,file = "cleanextractarxiv.csv")
 ```
 
 #LAB 5 DATASET CLEANING(PRODUCT REVIEWS)
-```{r}
+```{r,warning=FALSE}
 
 library(readr)
 library(stringr)
